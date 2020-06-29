@@ -21,7 +21,10 @@ Note: Currently the only way to use the non default cad.onshape.com workspace is
 
 ## File Stucture
 ```transforms.py``` - Runs the entire program
+
 ```onshape_utils.py``` - Implementation of calls specific transformation and assembly endpoints in the Onshape API
-```transform_utils.py``` - Implementatino of transformation matrix operations
+
+```transform_utils.py``` - Implementation of transformation matrix operations
+
 ```api_utils.py``` - Helper functions and set up for connecting to the Onshape API that is used by ```onshape_utils.py```.
   Note: This file should only be referenced within onshape_utils.
