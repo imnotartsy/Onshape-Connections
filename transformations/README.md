@@ -37,5 +37,6 @@ The files should have internal documentation about what all of their functions d
 
 # Common Problems
 
-```onshape_client.oas.exceptions.ApiException: (401) Reason: Unauthorized```
+- ```onshape_client.oas.exceptions.ApiException: (401) Reason: Unauthorized```
 --> api-key is missing
+- if there are errors with missing onshape when running the code, install onshape-client with ```pip3 install onshape-client```
