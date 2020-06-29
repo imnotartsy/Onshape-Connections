@@ -1,0 +1,496 @@
+### api 1
+/d/9aa9c4b314d33aeb8a198761
+/w/dfa67ad260696eabe6c2af3b
+/e/22469d0fc17f4bb968a0c2c5
+
+scratch pad:
+python3 shapeapi.py -d 9aa9c4b314d33aeb8a198761 -w dfa67ad260696eabe6c2af3b -e 22469d0fc17f4bb968a0c2c5
+
+
+### api 2
+
+/d/dd3414d7ce4a85936fabc2dd
+/w/2e1ab461aae1e88b62babc36
+/e/311ad6e8747c57d315ab0332
+
+motor:
+python3 shapeapi.py -d dd3414d7ce4a85936fabc2dd -w 2e1ab461aae1e88b62babc36 -e 311ad6e8747c57d315ab0332
+
+box and plane:
+python3 shapeapi.py -d dd3414d7ce4a85936fabc2dd -w 2e1ab461aae1e88b62babc36 -e 4272ac4853e79613479909d0
+
+
+https://rogers.onshape.com/api/assemblies/d/dd3414d7ce4a85936fabc2dd/w/2e1ab461aae1e88b62babc36/e/311ad6e8747c57d315ab0332?includeMateFeatures=false&includeNonSolids=false&includeMateConnectors=false
+
+https://rogers.onshape.com/api/assemblies/d/dd3414d7ce4a85936fabc2dd/w/2e1ab461aae1e88b62babc36/e/311ad6e8747c57d315ab0332/occurrencetransforms
+
+### Transform headers
+{
+    "occurrences": [
+        {
+          "path": [
+            "MqlDsiIe9pyyEuWkX"
+          ],
+          "transform": [
+            1.0, 0.0, 0.0, 0.0,
+            0.0, 1.0, 0.0, 0.0,
+            0.0, 0.0, 1.0, 0.0,
+            0.0, 0.0, 0.0,  1.0
+          ],
+          "fixed": false,
+          "hidden": false
+        },
+        {
+          "path": [
+            "MOGu3YOoeB11XHLHg"
+          ],
+          "transform": [
+            1.0, 0.0, 0.0, 0.0,
+            0.0, 1.0, 0.0, 0.0,
+            0.0, 0.0, 1.0, 0.0,
+            0.0, 0.0, 0.0,  1.0
+          ],
+          "fixed": false,
+          "hidden": false
+        },
+        {
+          "path": [
+            "MngGHQsXx7NsKcacV"
+          ],
+          "transform": [
+            1.0, 0.0, 0.0, 0.0,
+            0.0, 1.0, 0.0, 0.0,
+            0.0, 0.0, 1.0, 0.0,
+            0.0, 0.0, 0.0,  1.0
+          ],
+          "fixed": false,
+          "hidden": false
+        }
+      ],
+    "transform": [
+            1.0, 0.0, 0.0, 0.0,
+            0.0, 1.0, 0.0, 0.0,
+            0.0, 0.0, 1.0, 0.0,
+            0.0, 0.0, 0.0,  1.0
+            ],
+    "isRelative": false
+}
+
+// // reset transform / 0 degrees
+"transform": [                
+      1 , 0 , 0 , 0 ,
+      0 , 1 , 0 , 0 ,
+      0 , 0 , 1 , 0 ,
+      0 , 0 , 0 , 1 
+    ],                
+
+// // 30 degrees
+"transform": [                                
+    0.8660254038, -0.5        ,         0,         0,
+    0.5         , 0.8660254038,         0,         0,
+    0           , 0           ,         1,         0,
+    0           , 0           ,         0,         1    
+  ],
+
+// // 60 degrees
+"transform": [                
+    0.5         , -0.8660254038,        0,          0,
+    0.8660254038, 0.5          ,        0,          0,
+    0           , 0            ,        1,          0,
+    0           , 0            ,        0,          1
+  ],                
+
+
+### Example assembly definition
+{
+  "rootAssembly": {
+    "documentId": "dd3414d7ce4a85936fabc2dd",
+    "documentMicroversion": "b4714a887a541af86ce08df6",
+    "configuration": "default",
+    "fullConfiguration": "default",
+    "elementId": "311ad6e8747c57d315ab0332",
+    "occurrences": [
+      {
+        "path": [
+          "M6RcehQr2iqwEpezi"
+        ],
+        "transform": [
+          0.8660254038115399,
+          -0.4999999999530587,
+          0.0,
+          -0.03237108540161354,
+          0.4999999999530587,
+          0.8660254038115399,
+          0.0,
+          0.029272982222352098,
+          0.0,
+          0.0,
+          1.0,
+          -0.009649013316215017,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "fixed": false,
+        "hidden": false
+      },
+      {
+        "path": [
+          "MHhI5JSSw2Pzx8CSS"
+        ],
+        "transform": [
+          1.0,
+          4.930380657631324E-32,
+          0.0,
+          -0.006046178049452202,
+          -4.930380657631324E-32,
+          1.0,
+          0.0,
+          0.04650209046889202,
+          0.0,
+          0.0,
+          1.0,
+          -0.00945526331621502,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "fixed": true,
+        "hidden": false
+      },
+      {
+        "path": [
+          "Mdry5HkOFa5m2sjYK"
+        ],
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          -0.006046178049452202,
+          0.0,
+          1.0,
+          0.0,
+          0.04650209046889202,
+          0.0,
+          0.0,
+          1.0,
+          -0.009455263316215018,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "fixed": false,
+        "hidden": false
+      }
+    ],
+    "instances": [
+      {
+        "id": "M6RcehQr2iqwEpezi",
+        "name": "Motor Axle <1>",
+        "partId": "RwBD",
+        "isStandardContent": false,
+        "configuration": "default",
+        "fullConfiguration": "default",
+        "type": "Part",
+        "suppressed": false,
+        "documentId": "dd3414d7ce4a85936fabc2dd",
+        "documentMicroversion": "b4714a887a541af86ce08df6",
+        "elementId": "8a32b58d6dd610caca5f2b91"
+      },
+      {
+        "id": "Mdry5HkOFa5m2sjYK",
+        "name": "Motor Bottom <1>",
+        "partId": "JoP",
+        "isStandardContent": false,
+        "configuration": "default",
+        "fullConfiguration": "default",
+        "type": "Part",
+        "suppressed": false,
+        "documentId": "dd3414d7ce4a85936fabc2dd",
+        "documentMicroversion": "b4714a887a541af86ce08df6",
+        "elementId": "8a32b58d6dd610caca5f2b91"
+      },
+      {
+        "id": "MHhI5JSSw2Pzx8CSS",
+        "name": "Motor Top <1>",
+        "partId": "JHD",
+        "isStandardContent": false,
+        "configuration": "default",
+        "fullConfiguration": "default",
+        "type": "Part",
+        "suppressed": false,
+        "documentId": "dd3414d7ce4a85936fabc2dd",
+        "documentMicroversion": "b4714a887a541af86ce08df6",
+        "elementId": "8a32b58d6dd610caca5f2b91"
+      }
+    ],
+    "features": [
+      {
+        "featureType": "mate",
+        "id": "MajNHVPhAyzNunutT",
+        "suppressed": false,
+        "featureData": {
+          "name": "Fastened 1",
+          "mateType": "FASTENED",
+          "matedEntities": [
+            {
+              "matedOccurrence": [
+                "MHhI5JSSw2Pzx8CSS"
+              ],
+              "matedCS": {
+                "origin": [
+                  0.01898750000000001,
+                  -0.03622500000000001,
+                  0.0112375
+                ],
+                "xAxis": [
+                  1.0,
+                  3.5952818154959727E-16,
+                  0.0
+                ],
+                "yAxis": [
+                  -0.0,
+                  0.0,
+                  1.0
+                ],
+                "zAxis": [
+                  3.5952818154959727E-16,
+                  -1.0,
+                  0.0
+                ]
+              }
+            },
+            {
+              "matedOccurrence": [
+                "Mdry5HkOFa5m2sjYK"
+              ],
+              "matedCS": {
+                "origin": [
+                  0.01898750000000001,
+                  -0.03622500000000001,
+                  0.011237499999999997
+                ],
+                "xAxis": [
+                  1.0,
+                  3.595281815495972E-16,
+                  0.0
+                ],
+                "yAxis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "zAxis": [
+                  3.595281815495972E-16,
+                  -1.0,
+                  -0.0
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "featureType": "mate",
+        "id": "MS6JLw4FmDX8OV1rp",
+        "suppressed": false,
+        "featureData": {
+          "name": "Revolute 1",
+          "mateType": "REVOLUTE",
+          "matedEntities": [
+            {
+              "matedOccurrence": [
+                "M6RcehQr2iqwEpezi"
+              ],
+              "matedCS": {
+                "origin": [
+                  0.018987500000000015,
+                  -0.05773750000000001,
+                  0.0
+                ],
+                "xAxis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "yAxis": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "zAxis": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              }
+            },
+            {
+              "matedOccurrence": [
+                "Mdry5HkOFa5m2sjYK"
+              ],
+              "matedCS": {
+                "origin": [
+                  0.018987500000000015,
+                  -0.05773750000000001,
+                  -1.9375000000000002E-4
+                ],
+                "xAxis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "yAxis": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "zAxis": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "subAssemblies": [],
+  "parts": [
+    {
+      "documentId": "dd3414d7ce4a85936fabc2dd",
+      "documentMicroversion": "b4714a887a541af86ce08df6",
+      "configuration": "default",
+      "fullConfiguration": "default",
+      "elementId": "8a32b58d6dd610caca5f2b91",
+      "partId": "RwBD",
+      "bodyType": "solid",
+      "isStandardContent": false
+    },
+    {
+      "documentId": "dd3414d7ce4a85936fabc2dd",
+      "documentMicroversion": "b4714a887a541af86ce08df6",
+      "configuration": "default",
+      "fullConfiguration": "default",
+      "elementId": "8a32b58d6dd610caca5f2b91",
+      "partId": "JHD",
+      "bodyType": "solid",
+      "isStandardContent": false
+    },
+    {
+      "documentId": "dd3414d7ce4a85936fabc2dd",
+      "documentMicroversion": "b4714a887a541af86ce08df6",
+      "configuration": "default",
+      "fullConfiguration": "default",
+      "elementId": "8a32b58d6dd610caca5f2b91",
+      "partId": "JoP",
+      "bodyType": "solid",
+      "isStandardContent": false
+    }
+  ],
+  "partStudioFeatures": []
+}
+
+
+### Part List
+
+
+[
+  {
+    "state": "IN_PROGRESS",
+    "name": "Motor Top",
+    "description": null,
+    "revision": null,
+    "elementId": "23cb41639794ac5f8d835823",
+    "partNumber": null,
+    "microversionId": "bd0e7429f375c8dd60692f02",
+    "partQuery": "query=qCompressed(1.0,\"&254$eJx9kctygjAUhl8mXdYhCFaXXFLBC9gEW3HDBBIxXgAhWHn7gsx006HLc873/+f2Yurgo+Zls9YJVAETFb3GIq2pFHlmU0kNuFb/VoKm4ASOgY/duesZq8hGG+TZyLNCMgN5KVKR0UtlTC2lNaaAZ1LIplOZFKDfgGgA2XNEYnAUlczLPjkFFkZG4PpeW8gLXj5busxUgcsMSCAcTcA7v56IrNBNP2RwuoiUb1Fyv2i737p1nkYMkCUKLCdCXuAGIeGgOnOZHPsBXEaSzkgpTHHPDPSpXuJcyvzazYw1rOMJfsNTTHGME8zIK1RHGrjwg/wH0EG7+3GISEAA948d1NnYSZNBSFv69erMFpcktgeh1XaTZmElmxSxQeiUErhYnAK6W9aDUIjgbb6pGb9zhjVr0n7F9O2w56y4v/isPdR6r0FltnVWxmziREpeoIcsWx2O2xeTL7QJok74Awb+vds=\",id);",
+    "partId": "JHD",
+    "configurationId": "",
+    "bodyType": "solid",
+    "isFlattenedBody": false,
+    "thumbnailConfigurationId": "",
+    "isMesh": false,
+    "appearance": {
+      "isGenerated": true,
+      "color": {
+        "red": 157,
+        "green": 207,
+        "blue": 237
+      },
+      "opacity": 255
+    },
+    "isHidden": false,
+    "ordinal": 0,
+    "propertySourceTypes": {
+      "57f3fb8efa3416c06701d60d": 3
+    }
+  },
+  {
+    "state": "IN_PROGRESS",
+    "name": "Motor Bottom",
+    "description": null,
+    "revision": null,
+    "elementId": "23cb41639794ac5f8d835823",
+    "partNumber": null,
+    "microversionId": "bd0e7429f375c8dd60692f02",
+    "partQuery": "query=qCompressed(1.0,\"&276$eJx9kk1zgjAQhv/M9ljHIFg98hEVtWCT2EovTCAR4wcghKr/vlhneunQ4+4+++67s/vkWPDWyOr2alFkgFA1PyUqa7hWRe5xzW30avytsFspKRpASPypH9jL2MMrHHg4cCM6hqJSmcr5sbbHbr8V5iBzrfTt3uVwwL8BNQF7U0wT2KlaF9UjOQKXYJv5YdAWilJWPyN94RjgCxtRhHpDmMjTnuoan61tjkbzuH9RlQzLdvr5vs6PkAC6wMydxThgPouohPogdbp7GPAFTXsDmPRLR33lNn43jroo74aJSSwyJC9kRDhJSEoEfUZGz4Sj3Op/AAvaxXddRAoMfV43yBKDWZZ2QuYibJYHMT+midcJLderLI9qfcuw6IT2GUXz+Z7xzaLphCKMztNVI+SX7FYyM7dgI9W8bY0NMd1hezcn9KIH5yaPm4xhsl6Xh/riXEzjU6TDGBUlvuqqFSdJ+wT0A69YfG/8BsJgyTg=\",id);",
+    "partId": "JID",
+    "configurationId": "",
+    "bodyType": "solid",
+    "isFlattenedBody": false,
+    "thumbnailConfigurationId": "",
+    "isMesh": false,
+    "appearance": {
+      "isGenerated": false,
+      "color": {
+        "red": 253,
+        "green": 253,
+        "blue": 253
+      },
+      "opacity": 255
+    },
+    "isHidden": false,
+    "ordinal": 1,
+    "propertySourceTypes": {
+      "57f3fb8efa3416c06701d60d": 3,
+      "57f3fb8efa3416c06701d60c": 3
+    }
+  },
+  {
+    "state": "IN_PROGRESS",
+    "name": "Motor Axle",
+    "description": null,
+    "revision": null,
+    "elementId": "23cb41639794ac5f8d835823",
+    "partNumber": null,
+    "microversionId": "bd0e7429f375c8dd60692f02",
+    "partQuery": "query=qCompressed(1.0,\"&2a0$eJx1kk1zgjAQhv9Meu0IiOARSNSogCahyokJkhGs5SOEVvz1RZ3ppcNxd5/dfffjzTXBvhOy902q6SArWv6VFueOq6IqIVfc0Xz9f4T1taCaAUKClzhwtglEOxRAFHgxnYNKFuei5NfW4d5kKMyBKFWh+keWywH6M+gUILhENAV50apKvpw28AhyGA6DIVDVQj5b4szVAc4cjWra+wwspA4bdsNof90aP/fE+CmkCOuhe/MY51koA3SDmLdKUMAwi6kA7adQp/wlAGf09K4BNwu69quHx2ZCJg+5ZEpMMiMWsQknKTmRgQMsXs3jKLC8SKejULtIlXW9bSzlB6PQWnaTm1kfnUhUo5CeHWeKqPMlXPJRyLD3eGWl/nraxaMQp96a7KymDztnFIIfsC+N9el+bsZXIPOodMMo3+L4MgotuvxQatzcbpaSTL3ZcGE3hPGL89LX9eZgcfXvtqO+a4ZLZeeJUdXopmSXCZIO70IPaMeSR+IvdR3WdQ==\",id);",
+    "partId": "RwBD",
+    "configurationId": "",
+    "bodyType": "solid",
+    "isFlattenedBody": false,
+    "thumbnailConfigurationId": "",
+    "isMesh": false,
+    "appearance": {
+      "isGenerated": false,
+      "color": {
+        "red": 157,
+        "green": 207,
+        "blue": 237
+      },
+      "opacity": 255
+    },
+    "isHidden": false,
+    "ordinal": 2,
+    "propertySourceTypes": {
+      "57f3fb8efa3416c06701d60d": 3,
+      "57f3fb8efa3416c06701d60c": 3
+    }
+  }
+]

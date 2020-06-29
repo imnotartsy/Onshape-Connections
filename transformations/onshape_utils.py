@@ -21,27 +21,27 @@ def getAssemblyInfo(verbose):
     params = {}
 
     response = api.callAPI('assembly-definition', {} , {})
-    print(response)
+    # print(response)
 
     ### Creates Part List
     parts = {}
 
-    # if (verbose):
-    #     print("Parts in assembly:")
-    # for instance in response["rootAssembly"]["instances"]:
-    #     if(verbose): print("  ", instance["id"], ":", instance["name"])
-    #     parts[instance["id"]] = instance["name"]
-    # if(verbose): print()
+    if (verbose):
+        print("Parts in assembly:")
+    for instance in response["rootAssembly"]["instances"]:
+        if(verbose): print("  ", instance["id"], ":", instance["name"])
+        parts[instance["id"]] = instance["name"]
+    if(verbose): print()
 
 
     ### Gets current position
     positions = {}
 
-    # # print("Positions of parts")
-    # for occurrence in response["rootAssembly"]["occurrences"]:
-    #     # print("  ", occurrence["path"][0],":", occurrence["transform"])
-    #     positions[occurrence["path"][0]] = occurrence["transform"]
-    # if(verbose): print()
+    # print("Positions of parts")
+    for occurrence in response["rootAssembly"]["occurrences"]:
+        # print("  ", occurrence["path"][0],":", occurrence["transform"])
+        positions[occurrence["path"][0]] = occurrence["transform"]
+    if(verbose): print()
 
     return [parts, positions]
 
