@@ -15,3 +15,8 @@
 *.aliases
 *.lvlps
 .cache/
+
+
+/transformations_milan
+/transformations/__pycache__
+api-key
