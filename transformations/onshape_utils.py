@@ -1,4 +1,5 @@
 import api_utils as api
+import json
 
 #############################################
 #                                           #
@@ -20,7 +21,7 @@ def getAssemblyInfo(verbose):
     payload = {}
     params = {}
 
-    response = api.callAPI('assembly-definition', {} , {})
+    response = api.callAPI('assembly-definition', {} , {}, True)
     # print(response)
 
     ### Creates Part List
@@ -57,23 +58,24 @@ def getAssemblyInfo(verbose):
 #   Nothing (success code/wip)
 def postTransform(M, isRelative, parts, assembly, verbose):
     
-    payload = {}
-    # payload = {
-    #     "occurrences": [
-    #         {
-    #           "path": [
-    #             "MNjuuJ3b7llM9IQIb"
-    #           ]
-    #         }
-    #     ],
-    #     "transform": [                          
-    #         M
-    #     ],                          
-    #     "isRelative": true
-    # }
+    payload = {
+        "occurrences": [
+            {
+              "path": [
+                parts[0]
+              ]
+            }
+        ],
+        "transform": [                          
+            M
+        ],                          
+        "isRelative": isRelative
+    }
+
+    if (verbose): print(payload)
     params = {}
 
-    # response = api.callAPI('assembly-definition', {} , {})
-    # print(json.dumps(response, indent = 2))
+    response = api.callAPI('occurrence-transforms', params, json.load(payload), False)
+    print(json.dumps(response, indent = 2))
 
     return "success"

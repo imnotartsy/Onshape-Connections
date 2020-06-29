@@ -51,6 +51,18 @@ for identifier in positions:
 # print("Transform matrix:")
 # transform.prettyPrintMatrix(x)
 # // 'occurance-transforms': ['POST','/api/assemblies/d/did/w/wid/e/eid/occurrencetransforms']
+M = transform.getTransfromMatrix(0.5, 0.5, 0.5)
+print("Generated transform matrix:")
+transform.prettyPrintMatrix(M)
+
+## TODO: prompt user for which part names
+#  - then convert to part keys (id/paths)
+partsToTransform = [list(parts.keys())[0]]
+# print(partsToTransform)
+
+# WIP
+#  state = onshape.postTransform(M, True, partsToTransform, assembly, True)
+#  print(state)
 
 #############################################
 #                                           #

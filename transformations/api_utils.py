@@ -80,7 +80,7 @@ def checkArgs(verbose):
 #   payload  - request body, in json format
 # Returns:
 #   The response data object from the api call
-def callAPI(endpoint, params, payload):
+def callAPI(endpoint, params, payload, hasReturn):
 
     method    = urls[endpoint][0]
     fixed_url = urls[endpoint][1]
@@ -96,4 +96,5 @@ def callAPI(endpoint, params, payload):
         url=args.base + fixed_url, query_params=params, headers=headers, body=payload)
 
     # print(response.data)
-    return json.loads(response.data);
+    if (hasReturn):
+    	return json.loads(response.data);
