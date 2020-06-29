@@ -62,5 +62,5 @@ def prettyPrintMatrix(x):
 	for i in range(0, len(x)):
 		if (i%col == 0):
 			print()
-		print(x[i], end=' ')
+		print(x[i], end='          ')
 	print()

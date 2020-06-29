@@ -2,52 +2,64 @@
 ## Modifed by Teo Patrosio @imnotartsy
 
 from onshape_client.client import Client
-import argparse 
 import json
 
 import api_utils as util
 import transform_utils as transform
 
-# Occurance Transform: /api/assemblies/d/did/w/wid/e/eid/occurrencetransforms
-
 #############################################
 #                                           #
-#             Parsing Arguements            #
+#             Set Up Information            #
 #                                           #
 #############################################
 
-# Parse Arguements from the cmdline
-parser = argparse.ArgumentParser(description='Onshape API')
+util.checkArgs(True)
+### Most server stuff is abstracted away in api_utils
 
-parser.add_argument('-d', dest="did", help="Specify a document id (did) for your Onshape workspace")
-parser.add_argument('-w', dest="wid", help="Specify a workspace id (wid) for your Onshape workspace")
-parser.add_argument('-e', dest="eid", help="Specify an element id (eid) for your Onshape workspace")
-parser.add_argument('-b', dest="base", help="Specify a base url your Onshape workspace")
+#############################################
+#                                           #
+#               Assembly Info               #
+#                                           #
+#############################################
 
-args = parser.parse_args()
+### Gets Assembly Information
+payload = {}
+params = {}
 
-# Parse Arguements from file
-if (not (args.did and args.wid and args.eid)):
-	try:
-		with open("document-preferences", "r") as f: 
-			args.base = f.readline().rstrip()
-			args.did = f.readline().rstrip()
-			args.wid = f.readline().rstrip()
-			args.eid = f.readline().rstrip()
-	except:
-		print("All parameters not given. Please give did, wid, and eid using the flags -d, -w, and -e")
-		exit()
+response = util.callAPI('assembly-definition', {} , {})
+# print(json.dumps(response, indent = 2))
 
-if (not args.base):
-	args.base = "https://rogers.onshape.com"
-	print(". . . Defaulting to rogers.onshape.com . . .")
 
-print("Using Workbench:", args.base)
-print("Document ID:", args.did)
-print("Workspace ID:", args.wid)
-print("Element ID:", args.eid)
+### Creates Part List
+parts = {}
 
-util.openApi()
+print("Parts in assembly:")
+for instance in response["rootAssembly"]["instances"]:
+	print("  ", instance["id"], ":", instance["name"])
+	parts[instance["id"]] = instance["name"]
+print()
+
+
+### Gets current position
+positions = {}
+
+# print("Positions of parts")
+for occurrence in response["rootAssembly"]["occurrences"]:
+	# print("  ", occurrence["path"][0],":", occurrence["transform"])
+	positions[occurrence["path"][0]] = occurrence["transform"]
+print()
+
+
+### Print combined
+for identifier in positions:
+	print(parts[identifier], "(" + identifier + ")", end = "")
+	transform.prettyPrintMatrix(positions[identifier])
+	print()
+
+
+
+
+## TODO: refactor page so the assembly information is in two separate functions
 
 
 #############################################
