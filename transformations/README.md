@@ -36,6 +36,6 @@ Note: Currently the only way to use the non default cad.onshape.com workspace is
 The files should have internal documentation about what all of their functions do.
 
 # Common Problems
-```onshape_client.oas.exceptions.ApiException: (401)
-Reason: Unauthorized```
+
+```onshape_client.oas.exceptions.ApiException: (401) Reason: Unauthorized```
 --> api-key is missing
