@@ -6,8 +6,8 @@ import math
 #                                           #
 #############################################
 
-# commonTransformations is a dicionary of "transform" objects used in 
-#  the Making Transformation section. It is an array of seven values:
+# commonTransformations is a dicionary of "transform args" objects used mostly in 
+#  this file. A transform args objects is an array of seven values:
 #  [tx, ty, tz, rx, ry, rz, w] (translate x, y, z, then the rotation axis and angle)
 commonTransforms = {
                     #[ tx,   ty,   tz,   rx,   ry,   rz,   w  ]
@@ -27,7 +27,11 @@ commonTransforms = {
 #                                           #
 #############################################
 
-# Creates transform objects
+# readInTransformObject() - Creates transform args objects (as defined above)
+# Parameters:
+#   None
+# Returns:
+#   A transform args object
 def readInTransformObject():
     args = []
     dim  = ["tx", "ty", "tz", "rx", "ry", "rz", "alpha (degree)"]
@@ -39,15 +43,19 @@ def readInTransformObject():
             print("The input entered is not valid. (Ending . . .)")
             exit()
     
-
     return args
 
+# promtUser() - Asks user a query string that has a yes or no answer
+# Parameters:
+#   queryString - The question for the user
+# Returns:
+#   A boolean value depending on the user's input
 def promptUser(questionString):
     print(questionString, "(y/n)")
     userIn = input()
     if (userIn.upper() == 'Y' or userIn.upper() == 'YES'):
         return True
-    if (userIn.upper() == 'N' or userIn.upper() == 'NO'):
+    elif (userIn.upper() == 'N' or userIn.upper() == 'NO'):
         return False
     else:
         print("The input entered is not valid.")
@@ -60,28 +68,10 @@ def promptUser(questionString):
 #                                           #
 #############################################
 
-
-# Generates Transform Matrices with a given translation args object
-def getTranslationMatrix(translation):
-
-    tx = translation[0]
-    ty = translation[1]
-    tz = translation[2]
-
-    rx = translation[3]
-    ry = translation[4]
-    rz = translation[5]
-
-    w_deg = translation[6]
-    w = math.radians(w_deg)
-    # Perform conversion to unit rotation vector
-
-
-    return [1.0,      0,        0,       tx,
-            0,      1.0,        0,       ty,
-            0,        0,      1.0,       tz,
-            0,        0,        0,       1.0]
-
+# A transform matrix as defined here:
+#    https://drafts.csswg.org/css-transforms-2/#mathematical-description
+# In this program a transform matrix will be a 16 element 1D array that
+#   should be visualized as a 4x4 2D matrix.
 
 # Matrix format
 #   M[0]  = m11     M[1]  = m21     M[2]  = m31     M[3]  = m41
@@ -90,7 +80,72 @@ def getTranslationMatrix(translation):
 #   M[12] = m14     M[13] = m24     M[14] = m34     M[15] = m44
 
 
-# Generates translation args object from a transform matrix
+# getTranslationMatrix() - Generates a transform matrix from a transform
+#   args object
+# Parameters:
+#   translation - a tranform args object (array)
+#   verbose - a boolean value for if the matrix should be printed
+# Returns:
+#   A transform matrix.
+def getTranslationMatrix(translation, verbose):
+
+    # Translate variables
+    tx = translation[0]
+    ty = translation[1]
+    tz = translation[2]
+    # Vector for Rotation
+    rx = translation[3]
+    ry = translation[4]
+    rz = translation[5]
+    # Angle for Rotation
+    w_deg = translation[6]
+    if (w_deg == 0):
+        return [1.0,  0.0,  0.0,  tx,
+                0.0,  1.0,  0.0,  ty,
+                0.0,  0.0,  1.0,  tz,
+                0.0,  0.0,  0.0,  1.0]
+
+    # Unit Vector for Rotation
+    rotLen = math.sqrt(math.pow(rx, 2) + math.pow(ry, 2) + math.pow(rz, 2))
+    ux = rx / rotLen
+    uy = ry / rotLen
+    uz = rz / rotLen
+
+    w = math.radians(w_deg)
+
+    sc = math.sin(w/2) * math.cos(w/2)
+    sq = math.pow(math.sin(w/2), 2)
+
+    M = [1.0 - 2.0 * (math.pow(uy, 2) + math.pow(uz, 2)) * sq,  # m11
+         2.0 * (ux * uy * sq - uz * sc),                        # m21
+         2.0 * (ux * uz * sq + uy * sc),                        # m31
+         tx,                                                    # m41
+         2.0 * (ux * uy * sq + uz * sc),                        # m12
+         1.0 - 2.0 * (math.pow(ux, 2) + math.pow(uz, 2)) * sq,  # m22
+         2.0 * (uy * uz * sq - ux * sc),                        # m32
+         ty,                                                    # m42
+         2.0 * (ux * uz * sq - uy * sc),                        # m13
+         2.0 * (uy * uz * sq + ux * sc),                        # m23
+         1.0 - 2.0 * (math.pow(ux, 2) + math.pow(uy, 2)) * sq,  # m33
+         tz,                                                    # m43
+         0.0,                                                   # m43
+         0.0,                                                   # m43
+         0.0,                                                   # m43
+         1.0]                                                   # m43
+
+    if (verbose):
+        prettyPrintMatrix(M)
+    return M
+
+# getTranslationMatrix() - Generates translation args object from a transform
+#   matrix
+# Parameters:
+#   M - a transformation matrix
+#   vebrose - a boolean value for if the generated transform args object should
+#       should be printed
+# Returns:
+#   a tranform args object (array)
+#
 def decodeMatrix(M, verbose):
 
     tx = M[3]
@@ -134,6 +189,11 @@ def prettyPrintMatrix(x):
     print()
 
 
-def prettyPrintPosition(positionArray):
-    print("Translation (x, y, z): \t\t", positionArray[0], '\t', positionArray[1], '\t', positionArray[2])
-    print("Rotation (ux, uy, uz, alpha): \t", positionArray[3], '\t',  positionArray[4], '\t', positionArray[5], '\t', positionArray[6])
+def prettyPrintPosition(posArray):
+    print("Translation (x, y, z): \t\t", round(posArray[0], 5),
+                                   '\t', round(posArray[1], 5),
+                                   '\t', round(posArray[2], 5))
+    print("Rotation (ux, uy, uz, alpha): \t", round(posArray[3], 5),
+                                        '\t', round(posArray[4], 5),
+                                        '\t', round(posArray[5], 5),
+                                        '\t', round(posArray[6], 5))

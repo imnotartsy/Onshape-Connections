@@ -1,6 +1,8 @@
 import api_utils as api
 import json
 
+from onshape_client.oas.exceptions import ApiException
+
 #############################################
 #                                           #
 #             Assembly API Call             #
@@ -13,8 +15,8 @@ import json
 #   verbose - boolean for excessive print statements
 # Returns:
 #   - An assembly object (a list):
-#      - The first element is a part dictionary where the keys are part id's and
-#    the values are the names of the parts
+#      - The first element is a part dictionary where the keys are part id's
+#    and the values are the names of the parts
 #      - The second element is a posision dictionary where the keys are part
 #   id's and the values are transformation matrices
 def getAssemblyInfo(verbose):
@@ -55,29 +57,31 @@ def getAssemblyInfo(verbose):
 #   verbose - boolean for excessive print statements
 # Returns:
 #   Nothing (success code/wip)
-def postTransform(M, isRelative, parts, assembly, verbose):
+def postTransform(M, isRelative, parts, verbose):
     
     payload = {
-        "occurrences": [
-            {
-              "path": [
-                parts[0]
-              ]
-            }
-        ],
-        "transform":                          
-            M
-        ,                          
+        "occurrences": [],
+        "transform": M,                          
         "isRelative": isRelative
     }
 
-    # for part in parts:
-    #     print(part)
+    for part in parts:
+        occurance = {
+            "path": [part]
+        }
+        payload["occurrences"].append(occurance)
+    # print(json.dumps(payload, indent = 2))
 
     if (verbose): print(payload)
     params = {}
 
-    response = api.callAPI('occurrence-transforms', params, payload, False)
-    # print(json.dumps(response, indent = 2))
+    ## TODO: add more error handling
+    try:
+        response = api.callAPI('occurrence-transforms', params, payload, False)
+    except ApiException as error:
+        print("Invalid transform!")
+        print("Sever message:", error.body)
+        print("Ending. . .")
+        exit();
 
     return "success"

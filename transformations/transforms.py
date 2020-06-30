@@ -31,13 +31,12 @@ positions = assembly[1]
 ### Print Parts and Positions (decode their transfomation arrays)
 for identifier in positions:
     print(parts[identifier], "(" + identifier + ")")
-    # transform.prettyPrintMatrix(positions[identifier])
     transform.decodeMatrix(positions[identifier], True)
     print()
 
 #############################################
 #                                           #
-#             Prepare Transform             #
+#       Prepare and Perform Transform       #
 #                                           #
 #############################################
 
@@ -55,20 +54,22 @@ if (transform.promptUser("Do you want to perform a transform?")):
     transformArgs = []
     if (userIn.upper() == 'N' or userIn.upper() == 'NEW'):
         args = transform.readInTransformObject()
+    # elif (userIn == 't'): # quick transform for debugging
+    #     print("\tDebugging transform selected.")
+    #     args = [0.1,  0.1,  0.0,  0.0,  0.0,   0.0,   0.0]
     else:
         try:
             args = transform.commonTransforms[userIn]
         except:
             print("No transformation exists with that name. (Ending . . .)")
             exit()
-
+    
+    ## TODO: add isRelative to Transform arg object
 
     ### Gets Transform Matrix from Transform args object
-    M = transform.getTranslationMatrix(args)
     print("Generated transform matrix:")
-    transform.prettyPrintMatrix(M)
+    M = transform.getTranslationMatrix(args, True)
     print()
-
 
     ### Gets List of Parts to Transform
     partsToTransform = []
@@ -79,10 +80,9 @@ if (transform.promptUser("Do you want to perform a transform?")):
             partsToTransform.append(part)
     print()
 
-
     ### Performs API call
     if (transform.promptUser("Do you want to call the api?")):
-        state = onshape.postTransform(M, True, partsToTransform, assembly, False)
+        state = onshape.postTransform(M, True, partsToTransform, False)
         print("Status:", state)
 
 else:
@@ -92,10 +92,11 @@ print()
 
 #############################################
 #                                           #
-#              Process Response             #
+#             New Assembly Info             #
 #                                           #
 #############################################
 
+### Get Assembly Information from the API
 assemblyAfter = onshape.getAssemblyInfo(False)
 partsAfter = assemblyAfter[0]
 positionsAfter = assemblyAfter[1]
@@ -105,5 +106,3 @@ for identifier in positions:
     print(partsAfter[identifier], "(" + identifier + ")")
     transform.decodeMatrix(positionsAfter[identifier], True)
     print()
-
-
