@@ -36,10 +36,23 @@ def readInTransformObject():
         try:
             args.append(float(input()))
         except:
-            print("The input entered is not valid. (please restart)")
+            print("The input entered is not valid. (Ending . . .)")
+            exit()
     
 
     return args
+
+def promptUser(questionString):
+    print(questionString, "(y/n)")
+    userIn = input()
+    if (userIn.upper() == 'Y' or userIn.upper() == 'YES'):
+        return True
+    if (userIn.upper() == 'N' or userIn.upper() == 'NO'):
+        return False
+    else:
+        print("The input entered is not valid.")
+        return False
+
 
 #############################################
 #                                           #
