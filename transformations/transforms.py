@@ -30,14 +30,9 @@ positions = assembly[1]
 ### Print combined
 for identifier in positions:
     print(parts[identifier], "(" + identifier + ")")
-    transform.prettyPrintMatrix(positions[identifier])
+    # transform.prettyPrintMatrix(positions[identifier])
+    transform.decodeMatrix(positions[identifier], True)
     print()
-
-
-
-
-## TODO: refactor page so the assembly information is in two separate functions
-
 
 #############################################
 #                                           #
@@ -45,24 +40,48 @@ for identifier in positions:
 #                                           #
 #############################################
 
-# prompt for type of transform
-# x = transform.getTransfromMatrix(1, 1, 1)
+### Get User Input
+print("Do you want to perform a transform? (y/n)")
+userIn = input()
 
-# print("Transform matrix:")
-# transform.prettyPrintMatrix(x)
-# // 'occurance-transforms': ['POST','/api/assemblies/d/did/w/wid/e/eid/occurrencetransforms']
-M = transform.getTransfromMatrix(0.5, 0.5, 0.5)
-print("Generated transform matrix:")
-transform.prettyPrintMatrix(M)
+if (userIn.upper() == 'Y' or userIn.upper() == 'YES'):
 
-## TODO: prompt user for which part names
-#  - then convert to part keys (id/paths)
-partsToTransform = [list(parts.keys())[0]]
-# print(partsToTransform)
 
-# WIP
-#  state = onshape.postTransform(M, True, partsToTransform, assembly, True)
-#  print(state)
+    print("Do you want to input a transform? ('new') or select one of the prexisting transforms:")
+    print("\t", end = '')
+    for transformArgName in transform.commonTransforms:
+        print(transformArgName, end=", ")
+    print()
+    userIn = input()
+
+    transformArgs = []
+    if (userIn.upper() == 'N' or userIn.upper() == 'NEW'):
+        args = transform.readInTransformObject()
+    else:
+        try:
+            args = transform.commonTransforms[userIn]
+        except:
+            print("No transformation exists with that name")
+
+    # Gets transform matrix
+    M = transform.getTranslationMatrix(args)
+    print("Generated transform matrix:")
+    transform.prettyPrintMatrix(M)
+
+    ## TODO: prompt user for which part names
+    #  - then convert to part keys (id/paths)
+    partsToTransform = [list(parts.keys())[1]] # grabs box
+    # print(partsToTransform)
+
+
+    print("Do you want to call the api? (y/n)")
+    userIn = input()
+
+    if (userIn.upper() == 'Y' or userIn.upper() == 'YES'):
+        state = onshape.postTransform(M, True, partsToTransform, assembly, False)
+        print("Status:", state)
+
+print()
 
 #############################################
 #                                           #
@@ -70,6 +89,15 @@ partsToTransform = [list(parts.keys())[0]]
 #                                           #
 #############################################
 
-# y = transform.decodeMatrix(x, True)
+assemblyAfter = onshape.getAssemblyInfo(False)
+partsAfter = assemblyAfter[0]
+positionsAfter = assemblyAfter[1]
+
+### Print combined
+for identifier in positions:
+    print(partsAfter[identifier], "(" + identifier + ")")
+    # transform.prettyPrintMatrix(positions[identifier])
+    transform.decodeMatrix(positionsAfter[identifier], True)
+    print()
 
 

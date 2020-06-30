@@ -42,7 +42,6 @@ def getAssemblyInfo(verbose):
     for occurrence in response["rootAssembly"]["occurrences"]:
         # print("  ", occurrence["path"][0],":", occurrence["transform"])
         positions[occurrence["path"][0]] = occurrence["transform"]
-    if(verbose): print()
 
     return [parts, positions]
 
@@ -66,16 +65,19 @@ def postTransform(M, isRelative, parts, assembly, verbose):
               ]
             }
         ],
-        "transform": [                          
+        "transform":                          
             M
-        ],                          
+        ,                          
         "isRelative": isRelative
     }
+
+    # for part in parts:
+    #     print(part)
 
     if (verbose): print(payload)
     params = {}
 
-    response = api.callAPI('occurrence-transforms', params, json.load(payload), False)
-    print(json.dumps(response, indent = 2))
+    response = api.callAPI('occurrence-transforms', params, payload, False)
+    # print(json.dumps(response, indent = 2))
 
     return "success"
