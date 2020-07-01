@@ -172,12 +172,6 @@ def decodeMatrix(M, verbose):
         prettyPrintPosition(translation)
     return translation
 
-# Matrix format
-#   M[0]  = m11     M[1]  = m21     M[2]  = m31     M[3]  = m41
-#   M[4]  = m12     M[5]  = m22     M[6]  = m32     M[7]  = m42
-#   M[8]  = m13     M[9]  = m23     M[10] = m33     M[11] = m43
-#   M[12] = m14     M[13] = m24     M[14] = m34     M[15] = m44
-
 #############################################
 #                                           #
 #          General Helper Functions         #
