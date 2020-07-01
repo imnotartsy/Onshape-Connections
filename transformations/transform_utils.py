@@ -152,7 +152,7 @@ def decodeMatrix(M, verbose):
     ty = M[7]
     tz = M[11]
 
-    w_rad = math.acos(1 - 1/2 * (math.pow((M[9] - M[6]),2) + math.pow((M[2] - M[8]),2) + pow((M[4] - M[1]),2)))
+    w_rad = 1/2 * math.acos(1 - 1/2 * (math.pow((M[9] - M[6]),2) + math.pow((M[2] - M[8]),2) + pow((M[4] - M[1]),2)))
     sc = math.sin(w_rad/2) * math.cos(w_rad/2)
 
     if (sc != 0):
@@ -171,6 +171,12 @@ def decodeMatrix(M, verbose):
     if (verbose):
         prettyPrintPosition(translation)
     return translation
+
+# Matrix format
+#   M[0]  = m11     M[1]  = m21     M[2]  = m31     M[3]  = m41
+#   M[4]  = m12     M[5]  = m22     M[6]  = m32     M[7]  = m42
+#   M[8]  = m13     M[9]  = m23     M[10] = m33     M[11] = m43
+#   M[12] = m14     M[13] = m24     M[14] = m34     M[15] = m44
 
 #############################################
 #                                           #
@@ -197,3 +203,7 @@ def prettyPrintPosition(posArray):
                                         '\t', round(posArray[4], 5),
                                         '\t', round(posArray[5], 5),
                                         '\t', round(posArray[6], 5))
+    # print("Rotation unrounded: \t", posArray[3],
+    #                           '\t', posArray[4],
+    #                           '\t', posArray[5],
+    #                           '\t', posArray[6])
