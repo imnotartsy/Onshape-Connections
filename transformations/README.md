@@ -1,7 +1,7 @@
 # Python X Onshape
 This script connects to an assembly in Onshape. It returns the parts, their ids/paths, and positions, then allows the user to apply transformations upon being prompted.
 
-# Credit
+Credit:
 - The connection to the Onshape API was heavily referenced from
 https://github.com/drybell/CEEO2020/tree/master/Onshape%2B
 
