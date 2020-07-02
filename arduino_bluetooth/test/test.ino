@@ -1,8 +1,14 @@
 // Teo Patrosio
 // Testing git with arduino
 
+#include "utils.h"
+
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Hello!");
+  int x = printHello();
+  Serial.println(x);
 }
 
 void loop() {
