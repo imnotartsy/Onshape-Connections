@@ -1,5 +1,14 @@
-## Original Script written by Daniel Ryaboshapka @drybell
-## Modifed by Teo Patrosio @imnotartsy
+###################################################  
+# Project name: Onshape Transformations
+# File name: transforms.py
+# Author: Therese (Teo) Patrosio @imnotartsy
+# Date: 6/26/20
+# Description: Main driver file for Onshape Transformations
+# Credits/inspirations: API calls referenced from Daniel Ryaboshapka @drybell
+# History: 
+#    Last modified by Teo 7/2/20
+# (C) Tufts Center for Engineering Education and Outreach (CEEO)
+###################################################
 
 from onshape_client.client import Client
 import json
