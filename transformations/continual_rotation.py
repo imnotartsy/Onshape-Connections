@@ -1,4 +1,4 @@
-## Modifed by Teo Patrosio @imnotartsy
+## Teo Patrosio @imnotartsy
 
 from onshape_client.client import Client
 import json
