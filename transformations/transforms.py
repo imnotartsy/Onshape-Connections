@@ -65,6 +65,7 @@ if (transform.promptUser("Do you want to perform a transform?")):
             exit()
     
     ## TODO: add isRelative to Transform arg object
+    isRelative = transform.promptUser("Do you want the transform to be relative?")
 
     ### Gets Transform Matrix from Transform args object
     print("Generated transform matrix:")
@@ -82,7 +83,7 @@ if (transform.promptUser("Do you want to perform a transform?")):
 
     ### Performs API call
     if (transform.promptUser("Do you want to call the api?")):
-        state = onshape.postTransform(M, True, partsToTransform, False)
+        state = onshape.postTransform(M, isRelative, partsToTransform, False)
         print("Status:", state)
 
 else:
