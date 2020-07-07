@@ -1,3 +1,15 @@
+###############################################################################
+# Project name: Onshape Transformations
+# File name: transform_utils.py
+# Author: Therese (Teo) Patrosio @imnotartsy
+# Date: 6/26/20
+# Description: Functions to do with transform arg objects and transform matrces
+# Credits/inspirations: Transform matrix math help from Andrew Daetz and Milan
+# History: 
+#    Last modified by Teo 7/2/20
+# (C) Tufts Center for Engineering Education and Outreach (CEEO)
+###############################################################################
+
 import math
 
 #############################################
@@ -19,6 +31,14 @@ commonTransforms = {
     'transBackwards':[ 0.0, -1.0,  0.0,  0.0,  0.0,   0.0,   0.0],
     'rot30ccZ':      [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,   30.0],
     'rot90ccZ':      [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,   90.0],
+
+
+    'leftside':      [ 0.0,  0.0,  0.0,  1.0,  0.0,   0.0,  -90.0], # 5
+    'rightside':     [ 0.0,  0.0,  0.0,  1.0,  0.0,   0.0,   90.0], # 2
+    'down':          [ 0.0,  0.0,  0.0,  1.0,  0.0,   0.0,  180.0], # 6
+    'up':            [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,   90.0], # 1 
+    'front':         [ 0.0,  0.0,  0.0,  0.0,  1.0,   0.0,   90.0], # 3
+    'back':          [ 0.0,  0.0,  0.0,  0.0,  1.0,   0.0,  -90.0], # 4
 }
 
 #############################################

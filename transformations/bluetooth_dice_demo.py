@@ -1,5 +1,6 @@
 import serial #pip3 install pyserial
-import transform_utils as transforms
+import transform_utils as transform
+import onshape_utils as onshape
 
 ### Connect to Serial 
 ser = serial.Serial('/dev/tty.LEGOHubOwen-SerialPortP')
@@ -10,6 +11,20 @@ print(ser.name)
 for i in range(0,2):
     line = ser.readline()
     print(line.decode(), end="")
+
+### Catch case for if spike goes into data spewing mode (untested)
+if ("Type \"help()\" for more information." not in line.decode()):
+    print("Catch case caught!")
+    ### Stops Spike Sensor Data flow
+    ## ctr + c, stop
+    ser.write('\x03'.encode())
+    # ctr + d, soft reboot
+    #ser.write('\x04'.encode())
+
+    ### Gets Spike starter message again
+    for i in range(0,2):
+        line = ser.readline()
+        print(line.decode(), end="")
 
 
 ### Message to send to serial
@@ -37,27 +52,42 @@ for i in range (0, 100):\r\n\b
     wait_for_seconds(0.5)\r\n
 
 \r\n\r\n\r\n\r\n
-\r\n\r\n\r\n\r\n
-\r\n\r\n\r\n\r\n
 """ 
-## figure out why it's not recognizeing code
 
 print(message)
 ser.write(message.encode())
 
 
+## Defines sides
 faces = ["leftside", "rightside", "down", "up", "front", "back"]
+currentState = faces[0]
 
-### Read Data
+### Read Data and call API
 for i in range(0,100):
-    line = ser.readline()
-    print(line.decode(), end="") # prints line
-    # for face in faces:
-    #     if(face in line.decode()):
-    #         print(face + "read!")
-    #         args = transforms.commonTransforms(face)
+    line = ser.readline(
+    ## Prints serial line
+    # print(line.decode(), end="")
+    for face in faces:
+        if(face in line.decode()):
+            print(face + "")
 
-# TODO: implement perfofrm transform
+            ## If state changes, call a transform
+            if(face != currentState):
+
+                ## Sets transformation
+                args = transform.commonTransforms[face]
+
+                ## Get asssembly information
+                assembly = onshape.getAssemblyInfo(False)
+                parts = assembly[0]
+
+                ## Transforms set up (get matrix and part id from assembly info)
+                M = transform.getTranslationMatrix(args, False)
+                partsToTransform = [list(parts.keys())[0]] # selects first element
+
+                state = onshape.postTransform(M, False, partsToTransform, False)
+                print("\tTransformation status:", state)
+                currentState = face
 
 
 ser.close()
