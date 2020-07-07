@@ -11,6 +11,25 @@ ser = serial.Serial('/dev/tty.LEGOHubOwen-SerialPortP')
 print(ser.name) 
 
 
+### Gets Spike starter message
+for i in range(0,2):
+    line = ser.readline()
+    print(line.decode(), end="")
+
+### Catch case for if spike goes into data spewing mode (untested)
+if ("Type \"help()\" for more information." not in line.decode()):
+    print("Catch case caught!")
+    ### Stops Spike Sensor Data flow
+    ## ctr + c, stop
+    ser.write('\x03'.encode())
+    # ctr + d, soft reboot
+    #ser.write('\x04'.encode())
+
+    ### Gets Spike starter message again
+    for i in range(0,2):
+        line = ser.readline()
+        print(line.decode(), end="")
+
 ## Always send ctr + C to cut sensor data ('\x03')
 
 ### Get Message
@@ -86,7 +105,7 @@ ser.write(message.encode())
 
 for i in range(0,100):
     line = ser.readline()   # read a '\n' terminated line
-    # print(line.decode(), end="")
+    # print(line.decode(), end="") # prints
     if("leftside" in line.decode()):
         print("leftside READ")
     if("rightside" in line.decode()):
