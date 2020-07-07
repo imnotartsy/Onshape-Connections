@@ -12,9 +12,9 @@
 from onshape_client.client import Client
 import json
 
-import onshape_utils as onshape
-import api_utils as api
-import transform_utils as transform
+import utils.onshape_utils as onshape
+import utils.api_utils as api
+import utils.transform_utils as transform
 
 #############################################
 #                                           #

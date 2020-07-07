@@ -10,8 +10,8 @@
 ###############################################################################
 
 import serial #pip3 install pyserial
-import transform_utils as transform
-import onshape_utils as onshape
+import utils.transform_utils as transform
+import utils.onshape_utils as onshape
 
 ### Connect to Serial 
 ser = serial.Serial('/dev/tty.LEGOHubOwen-SerialPortP')
@@ -75,7 +75,7 @@ currentState = faces[0]
 
 ### Read Data and call API
 for i in range(0,100):
-    line = ser.readline(
+    line = ser.readline()
     ## Prints serial line
     # print(line.decode(), end="")
     for face in faces:
