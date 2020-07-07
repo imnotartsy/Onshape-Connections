@@ -1,5 +1,7 @@
 # Python X Onshape
-This script connects to an assembly in Onshape. It returns the parts, their ids/paths, and positions, then allows the user to apply transformations upon being prompted.
+These scripts connect to an assembly in Onshape.
+## Files:
+```transforms.py``` - It returns the parts, their ids/paths, and positions, then allows the user to apply transformations upon being prompted.
 
 Credit:
 - The connection to the Onshape API was heavily referenced from
@@ -14,7 +16,7 @@ https://github.com/drybell/CEEO2020/tree/master/Onshape%2B
   - These can be found in your Onshape document url.
   - Depending on your chosen method of running this program, you will want to keep the did, wid, and eid handy.
 
-## To Run
+## To Run transforms.py
 There are two ways of running this script.
 1. Using the format :
 ``` python3 transforms.py -d your-did-here -w your-wid-here -e your-eid-here```
@@ -22,9 +24,7 @@ There are two ways of running this script.
 
 Note: Currently the only way to use the non default cad.onshape.com workspace is to use document preferences
 
-## File Stucture
-```transforms.py``` - Runs the entire program
-
+## Utils (non runnable helper functions that are used across files)
 ```transform_utils.py``` - Implementation of transformation matrix operations
 
 ```onshape_utils.py``` - Implementation of calls specific transformation and assembly endpoints in the Onshape API
