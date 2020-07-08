@@ -23,7 +23,7 @@ def getAssemblyInfo(verbose):
     payload = {}
     params = {}
 
-    response = api.callAPI('assembly-definition', {} , {}, True)
+    response = api.callAPI('assembly-definition', payload , params, True)
     # print(response)
 
     ### Creates Part List
@@ -75,7 +75,6 @@ def postTransform(M, isRelative, parts, verbose):
     if (verbose): print(payload)
     params = {}
 
-    ## TODO: add more error handling
     try:
         response = api.callAPI('occurrence-transforms', params, payload, False)
     except ApiException as error:
