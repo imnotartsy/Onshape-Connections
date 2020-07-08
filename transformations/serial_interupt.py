@@ -72,6 +72,7 @@ for i in range(0,2):
 
 message = """
 
+
 import hub,utime\r\n
 from spike.control import wait_for_seconds\r\n
 
