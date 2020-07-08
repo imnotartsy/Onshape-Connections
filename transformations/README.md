@@ -1,9 +1,9 @@
 # Python X Onshape
 These scripts connect to an assembly in Onshape.
 ## Projects
-- ```transforms.py``` - It returns the parts, their ids/paths, and positions, then allows the user to apply transformations upon being prompted.
+- ```transforms.py``` - It returns the parts, their ids/paths, and positions, then allows the user to apply transformations upon being prompted. DEMO: https://youtu.be/-olHUShWuLk?t=97
 
-- ```dice_demo.py``` - This program connects to the spike prime, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position.
+- ```dice_demo.py``` - This program connects to the spike prime, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position. DEMO: https://youtu.be/-olHUShWuLk?t=129
 
 ### WIP's
 - ```continual_rotation.py``` - A script that attempts to rotate a part named "axle <1>" 12 times, 30 degrees. This script was an exploration of rotations not around the origin. This is run the same way as ```transforms.py```
@@ -29,6 +29,8 @@ Note: Currently the only way to use the non default cad.onshape.com workspace is
 
 ## To Run dice_demo.py
 - Using ```python3 dice_demo.py -p your-spike-prime-port``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
+
+Note: The current configuration assumes the user has the port, that can be found with ```cd /dev``` and the port that looks like "tty.LEGO-SerialPortP" 
 
 ## Utils (non runnable helper functions that are used across files)
 ```transform_utils.py``` - Implementation of transformation matrix operations (More docuementation here: https://docs.google.com/spreadsheets/d/1MutKDT-GvC54-6fMNVkxyB-l_KxuO7ptp8d1v82nCl4/edit#gid=0)
