@@ -1,11 +1,14 @@
 # Python X Onshape
 These scripts connect to an assembly in Onshape.
-## Files:
-```transforms.py``` - It returns the parts, their ids/paths, and positions, then allows the user to apply transformations upon being prompted.
+## Projects
+- ```transforms.py``` - It returns the parts, their ids/paths, and positions, then allows the user to apply transformations upon being prompted.
 
-Credit:
-- The connection to the Onshape API was heavily referenced from
-https://github.com/drybell/CEEO2020/tree/master/Onshape%2B
+- ```dice_demo.py``` - This program connects to the spike prime, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position.
+
+### WIP's
+- ```continual_rotation.py``` - A script that attempts to rotate a part named "axle <1>" 12 times, 30 degrees. This script was an exploration of rotations not around the origin. This is run the same way as ```transforms.py```
+
+- ```serial_interrupt.py``` - This program is an attempt of a IDE X REPL program, where the user is able to upload a saved file while having live access to the serial and REPL. This is run the same was as ```dice_demo.py``` however does not use ```document-preferences``` as it is not connected with Onshape.
 
 # Getting Started
 ## Before Running 
@@ -18,20 +21,26 @@ https://github.com/drybell/CEEO2020/tree/master/Onshape%2B
 
 ## To Run transforms.py
 There are two ways of running this script.
-1. Using the format :
+1. Using the format:
 ``` python3 transforms.py -d your-did-here -w your-wid-here -e your-eid-here```
 2. Using ```python3 transforms.py``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
 
 Note: Currently the only way to use the non default cad.onshape.com workspace is to use document preferences
 
+## To Run dice_demo.py
+- Using ```python3 dice_demo.py -p your-spike-prime-port``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
+
 ## Utils (non runnable helper functions that are used across files)
-```transform_utils.py``` - Implementation of transformation matrix operations
+```transform_utils.py``` - Implementation of transformation matrix operations (More docuementation here: https://docs.google.com/spreadsheets/d/1MutKDT-GvC54-6fMNVkxyB-l_KxuO7ptp8d1v82nCl4/edit#gid=0)
 
 ```onshape_utils.py``` - Implementation of calls specific transformation and assembly endpoints in the Onshape API
 
 ```api_utils.py``` - Helper functions and set up for connecting to the Onshape API that is used by ```onshape_utils.py```.
   
-  Note: This file should only be referenced within onshape_utils.
+  Notes:
+  - This file should only be referenced within onshape_utils.
+  - The connection to the Onshape API was heavily referenced from
+  https://github.com/drybell/CEEO2020/tree/master/Onshape%2B
 
 The files should have internal documentation about what all of their functions do.
 
