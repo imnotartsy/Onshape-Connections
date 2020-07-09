@@ -43,7 +43,8 @@ def getAssemblyInfo(verbose):
     # print("Positions of parts")
     for occurrence in response["rootAssembly"]["occurrences"]:
         # print("  ", occurrence["path"][0],":", occurrence["transform"])
-        positions[occurrence["path"][0]] = occurrence["transform"]
+        positions[occurrence["path"][0]] = occurrence["transform"] ## update so it takes the last path 
+        #  positions[occurrence["path"][len(occurrence["path"])]]
 
     return [parts, positions]
 
