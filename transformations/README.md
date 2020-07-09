@@ -1,9 +1,11 @@
 # Python X Onshape
 These scripts connect to an assembly in Onshape.
 ## Projects
-- ```transforms.py``` - It returns the parts, their ids/paths, and positions, then allows the user to apply transformations upon being prompted. DEMO: https://youtu.be/-olHUShWuLk?t=97
+- ```transforms.py``` - It returns the parts, their ids/paths, and positions, then allows the user to apply transformations upon being prompted.
+DEMO: https://youtu.be/-olHUShWuLk?t=97
 
-- ```dice_demo.py``` - This program connects to the spike prime, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position. DEMO: https://youtu.be/-olHUShWuLk?t=129
+- ```dice_demo.py``` - This program connects to the spike prime, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position.
+DEMO: https://youtu.be/-olHUShWuLk?t=129
 
 ### WIP's
 - ```continual_rotation.py``` - A script that attempts to rotate a part named "axle <1>" 12 times, 30 degrees. This script was an exploration of rotations not around the origin. This is run the same way as ```transforms.py```
