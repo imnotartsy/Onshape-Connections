@@ -1,3 +1,6 @@
+# This file contains various terminal calls of programs and their document ID's
+
+
 ### api 1
 /d/9aa9c4b314d33aeb8a198761
 /w/dfa67ad260696eabe6c2af3b
@@ -18,6 +21,31 @@ python3 shapeapi.py -d dd3414d7ce4a85936fabc2dd -w 2e1ab461aae1e88b62babc36 -e 3
 
 box and plane:
 python3 shapeapi.py -d dd3414d7ce4a85936fabc2dd -w 2e1ab461aae1e88b62babc36 -e 4272ac4853e79613479909d0
+python3 transforms.py -d dd3414d7ce4a85936fabc2dd -w 2e1ab461aae1e88b62babc36 -e 4272ac4853e79613479909d0
+
+
+### dice
+https://rogers.onshape.com/documents/b0fde7c612d8c316b237ea4b/w/ed6cd2053d8e2316c3763aad/e/8702e117e1605ddf1099e5f9
+python3 transforms.py -d b0fde7c612d8c316b237ea4b -w ed6cd2053d8e2316c3763aad -e 8702e117e1605ddf1099e5f9
+
+### python3 dice_demo.py -p /dev/tty.LEGOHubOwen-SerialPortP 
+
+
+### LEGO Spike Prime Complete Set - Demo
+https://rogers.onshape.com/documents/ede5b298fabfaa8e77cfce0f/w/2886cd6354fd48b86595d86d/e/7153984ee942e8628b5d06aa
+python3 transforms.py -d ede5b298fabfaa8e77cfce0f -w 2886cd6354fd48b86595d86d -e 7153984ee942e8628b5d06aa
+
+https://rogers.onshape.com/api/assemblies/d/ede5b298fabfaa8e77cfce0f/w/2886cd6354fd48b86595d86d/e/7153984ee942e8628b5d06aa
+
+### LEGO Small Spike Motor
+python3 transforms.py -d faa054c33dbf50b8a8fcfa4d -w 9db11badd909f2170f4bf0b2 -e dcab898a0269b6f07539fb65
+
+### LEGO Spike Prime Complete Set - Demo 2
+python3 transforms.py -d ede5b298fabfaa8e77cfce0f -w 2886cd6354fd48b86595d86d -e 6d6ae652917f4f958770cd1f
+
+assembly definition:
+https://rogers.onshape.com/api/assemblies/d/ede5b298fabfaa8e77cfce0fd/w/2886cd6354fd48b86595d86d/e/6d6ae652917f4f958770cd1f?includeMateFeatures=true
+https://rogers.onshape.com/api/assemblies/d/ede5b298fabfaa8e77cfce0f/w/2886cd6354fd48b86595d86d/e/6d6ae652917f4f958770cd1f
 
 
 https://rogers.onshape.com/api/assemblies/d/dd3414d7ce4a85936fabc2dd/w/2e1ab461aae1e88b62babc36/e/311ad6e8747c57d315ab0332?includeMateFeatures=false&includeNonSolids=false&includeMateConnectors=false
