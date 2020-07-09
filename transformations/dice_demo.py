@@ -5,16 +5,22 @@
 # Date: 6/26/20
 # Description: Connects spike bluetooth to onshape api for 7/7 demo
 # History: 
-#    Last modified by Teo 7/7/20
+#    Last modified by Teo 7/8/20
 # (C) Tufts Center for Engineering Education and Outreach (CEEO)
 ###############################################################################
 
 import serial #pip3 install pyserial
 import utils.transform_utils as transform
 import utils.onshape_utils as onshape
+import argparse 
+
+### Gets Serial from Terminal
+port_parser = argparse.ArgumentParser(description='Spike Serial Port')
+port_parser.add_argument('-p', dest="port", help="Specify a port for your Spike Prime")
+port_args = port_parser.parse_args()
 
 ### Connect to Serial 
-ser = serial.Serial('/dev/tty.LEGOHubOwen-SerialPortP')
+ser = serial.Serial(port_args.port) # '/dev/tty.LEGOHubOwen-SerialPortP'
 print(ser.name) 
 
 
@@ -23,19 +29,23 @@ for i in range(0,2):
     line = ser.readline()
     print(line.decode(), end="")
 
-### Catch case for if spike goes into data spewing mode (untested)
-if ("Type \"help()\" for more information." not in line.decode()):
-    print("Catch case caught!")
-    ### Stops Spike Sensor Data flow
-    ## ctr + c, stop
-    ser.write('\x03'.encode())
-    # ctr + d, soft reboot
-    #ser.write('\x04'.encode())
+### Catch case for if spike goes into data spewing mode (untested) (WIP)
+# Cancels any Data Sending
+ser.write('\x03'.encode())
+ser.write('\x03'.encode())
+ser.write('\x03'.encode())
+# if ("Type \"help()\" for more information." not in line.decode()):
+#     print("Catch case caught!")
+#     ### Stops Spike Sensor Data flow
+#     ## ctr + c, stop
+#     ser.write('\x03'.encode())
+#     # ctr + d, soft reboot
+#     #ser.write('\x04'.encode())
 
-    ### Gets Spike starter message again
-    for i in range(0,2):
-        line = ser.readline()
-        print(line.decode(), end="")
+#     ### Gets Spike starter message again
+#     for i in range(0,2):
+#         line = ser.readline()
+#         print(line.decode(), end="")
 
 
 ### Message to send to serial
