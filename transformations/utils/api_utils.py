@@ -35,6 +35,8 @@ parser.add_argument('-w', dest="wid", help="Specify a workspace id (wid) for you
 parser.add_argument('-e', dest="eid", help="Specify an element id (eid) for your Onshape workspace")
 parser.add_argument('-b', dest="base", help="Specify a base url your Onshape workspace")
 
+parser.add_argument('-p', dest="port", help="Specify a port for your Spike Prime")
+
 args = parser.parse_args()
 
 # Parse Arguements from file
