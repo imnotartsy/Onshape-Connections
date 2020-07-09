@@ -11,6 +11,7 @@
 ###############################################################################
 
 import math
+import copy
 
 #############################################
 #                                           #
@@ -100,8 +101,8 @@ def promptUser(questionString):
 #   M[12] = m14     M[13] = m24     M[14] = m34     M[15] = m44
 
 
-# getTranslationMatrix() - Generates a transform matrix from a transform
-#   args object
+# getTranslationMatrix() - Generates a transform matrix from a transform args
+#   object
 # Parameters:
 #   translation - a tranform args object (array)
 #   verbose - a boolean value for if the matrix should be printed
@@ -192,6 +193,29 @@ def decodeMatrix(M, verbose):
         prettyPrintPosition(translation)
     return translation
 
+
+# returnToOriginx() - Generates a transform args from a transform args object
+#   that reorients to the origin
+# Parameters:
+#   translation - a tranform args object (array)
+#   verbose - a boolean value for if the new transform args should be printed
+# Returns:
+#   A transform matrix.
+def returnToOriginx(translation, verbose):
+
+    new_translation = copy.deepcopy(translation)
+
+    # Flips translation and "unrotates"
+    new_translation[0] = -new_translation[0] # tx
+    new_translation[1] = -new_translation[1] # ty
+    new_translation[2] = -new_translation[2] # tz
+
+    new_translation[6] = -new_translation[6] # w
+
+    if (verbose):
+        prettyPrintPosition(new_translation)
+    return translation
+
 #############################################
 #                                           #
 #          General Helper Functions         #
@@ -217,7 +241,7 @@ def prettyPrintPosition(posArray):
                                         '\t', round(posArray[4], 5),
                                         '\t', round(posArray[5], 5),
                                         '\t', round(posArray[6], 5))
-    # print("Rotation unrounded: \t", posArray[3],
-    #                           '\t', posArray[4],
-    #                           '\t', posArray[5],
-    #                           '\t', posArray[6])
+    print("Rotation ux, uy, uz, alpha): \t", posArray[3], # unrounded
+                                       '\t', posArray[4],
+                                       '\t', posArray[5],
+                                       '\t', posArray[6])
