@@ -1,14 +1,22 @@
 import serial #pip3 install pyserial
-import transform_utils # this is for the prompt user function
-
+# import utils.transform_utils # this is for the prompt user function
+import argparse 
 
 ### Connect to Serial 
+
+### Gets Serial from Terminal
+port_parser = argparse.ArgumentParser(description='Spike Serial Port')
+port_parser.add_argument('-p', dest="port", help="Specify a port for your Spike Prime")
+port_args = port_parser.parse_args()
 
 # TODO: automate this? (options:)
 # - list serials then select
 # - take it in as an arguement
-ser = serial.Serial('/dev/tty.LEGOHubOwen-SerialPortP')
+
+### Connect to Serial 
+ser = serial.Serial(port_args.port) # '/dev/tty.LEGOHubOwen-SerialPortP'
 print(ser.name) 
+
 
 
 ### Gets Spike starter message
@@ -45,9 +53,9 @@ if ("Type \"help()\" for more information." not in line.decode()):
 
 ### Message to send to serial
 
-for i in range(0,2):
-    line = ser.readline()   # read a '\n' terminated line
-    print(line.decode(), end="")
+# for i in range(0,2):
+#     line = ser.readline()   # read a '\n' terminated line
+#     print(line.decode(), end="")
 
 
 # message = """
@@ -70,28 +78,19 @@ for i in range(0,2):
 
 ## This program gets the gesture of the spike
 
-message = """
+ser.write('\x03'.encode())
+ser.write('\x03'.encode())
+ser.write('\x03'.encode())
 
+message = """
 
 import hub,utime\r\n
 from spike.control import wait_for_seconds\r\n
 
 for i in range (0, 100):\r\n\b
-    if (hub.motion.gesture('leftside')):\r\n\b
-        print("leftside")\r\n\b\b\b
-    if (hub.motion.gesture('rightside')):\r\n\b\b
-        print("rightside")\r\n\b\b
-    if (hub.motion.gesture('down')):\r\n\b\b
-        print("down")\r\n\b\b
-    if (hub.motion.gesture('up')):\r\n\b\b
-        print("up")\r\n\b\b
-    if (hub.motion.gesture('front')):\r\n\b\b
-        print("front")\r\n\b\b
-    if (hub.motion.gesture('back')):\r\n\b\b
-        print("back")\r\n\b\b
+    print("Gyro:", hub.motion.gyroscope())\r\n\b\b
+    print("Position:", hub.motion.position())\r\n\b
 
-
-    # print(hub.motion.position())\r\n\b\b
     wait_for_seconds(0.5)\r\n
 
 \r\n\r\n\r\n\r\n
@@ -106,18 +105,18 @@ ser.write(message.encode())
 
 for i in range(0,100):
     line = ser.readline()   # read a '\n' terminated line
-    # print(line.decode(), end="") # prints
-    if("leftside" in line.decode()):
-        print("leftside READ")
-    if("rightside" in line.decode()):
-        print("rightside READ")
-    if("down" in line.decode()):
-        print("down READ")
-    if("up" in line.decode()):
-        print("up READ")
-    if("front" in line.decode()):
-        print("front READ")
-    if("back" in line.decode()):
-        print("BACK READ")
+    print(line.decode(), end="") # prints
+    # if("leftside" in line.decode()):
+    #     print("leftside READ")
+    # if("rightside" in line.decode()):
+    #     print("rightside READ")
+    # if("down" in line.decode()):
+    #     print("down READ")
+    # if("up" in line.decode()):
+    #     print("up READ")
+    # if("front" in line.decode()):
+    #     print("front READ")
+    # if("back" in line.decode()):
+    #     print("BACK READ")
 
 ser.close()
