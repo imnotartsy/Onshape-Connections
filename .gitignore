@@ -20,3 +20,5 @@
 /transformations_milan
 /transformations/__pycache__
 /transformations/api-key
+/arduino_backpack/WifiWebClient_edited/arduino_secrets.h
+
