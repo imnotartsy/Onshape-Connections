@@ -1,30 +1,8 @@
-
-/*
-  Web client
-
- This sketch connects to a website (http://www.google.com)
- using the WiFi module.
-
- This example is written for a network using WPA encryption. For
- WEP or WPA, change the Wifi.begin() call accordingly.
-
- This example is written for a network using WPA encryption. For
- WEP or WPA, change the Wifi.begin() call accordingly.
-
- Circuit:
- * Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
-
- created 13 July 2010
- by dlf (Metodo2 srl)
- modified 31 May 2012
- by Tom Igoe
- */
-
-
 #include <SPI.h>
 #include <WiFiNINA.h>
 
 #include "arduino_secret.h" 
+#include "wifi_utils.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;           
 char pass[] = SECRET_PASS;    
@@ -33,8 +11,8 @@ int keyIndex = 0;                          // your network key Index number (nee
 int status = WL_IDLE_STATUS;
 // if you don't want to use DNS (and reduce your sketch size)
 // use the numeric IP instead of the name for the server:
-//IPAddress server(74,125,232,128);  // numeric IP for Google (no DNS)
-char server[] = "numbersapi.com";    // name address for Google (using DNS)
+// IPAddress server(74,125,232,128);  // numeric IP for Google (no DNS)
+char server[] = "numbersapi.com";     // name address for Google (using DNS)
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
@@ -44,6 +22,9 @@ WiFiClient client;
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
+  delay(5000);
+  printHello();
+  
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -104,8 +85,7 @@ void loop() {
   }
 }
 
-
-void printWifiStatus() {
+void printWifiStatus() {  
   // print the SSID of the network you're attached to:
   Serial.print("SSID: ");
   Serial.println(WiFi.SSID());
