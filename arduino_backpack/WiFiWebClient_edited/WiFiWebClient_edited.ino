@@ -12,7 +12,7 @@ int status = WL_IDLE_STATUS;
 // if you don't want to use DNS (and reduce your sketch size)
 // use the numeric IP instead of the name for the server:
 // IPAddress server(74,125,232,128);  // numeric IP for Google (no DNS)
-char server[] = "numbersapi.com";     // name address for Google (using DNS)
+char server[] = "rogers.onshape.com";     // name address for Google (using DNS)
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
@@ -59,8 +59,22 @@ void setup() {
   if (client.connect(server, 80)) {
     Serial.println("connected to server");
     // Make a HTTP request:
-    client.println("GET /1729");
-    client.println("Host: http://numbersapi.com");
+    client.println("GET /api/partstudios/d/aa5f5cb08903b53f224287e0/w/e1f73355bdbd9a727fdd999e/e/1dac61a51b000e06dd9a37a6/features?");
+    // https://rogers.onshape.com/
+    client.println("Host: https://rogers.onshape.com/");
+    client.println("On-Nonce: 1XQDCD9VkphU13mQKPz6WfoVy");
+    client.println("Accept: application/json");
+    client.println("Authorization: On 0hOovSkonuPVQkxaT9qDMnIF:HmacSHA256:Lk+NLLslg6N+NJCF8VKgV9zXyG3gSL7KUVyUyz1H50g=");
+    client.println("Content-Type: application/json");
+    client.println("Host: Mon, 13 Jul 2020 17:16:26 GMT");
+    client.println("User-Agent: Onshape Python Sample App");
+    /* {'On-Nonce': '1XQDCD9VkphU13mQKPz6WfoVy',
+     *  'Accept': 'application/json',
+     *  'Authorization': 'On 0hOovSkonuPVQkxaT9qDMnIF:HmacSHA256:Lk+NLLslg6N+NJCF8VKgV9zXyG3gSL7KUVyUyz1H50g=',
+     *  'Content-Type': 'application/json',
+     *  'Date': 'Mon, 13 Jul 2020 17:16:26 GMT',
+     *  'User-Agent': 'Onshape Python Sample App'}
+     */
     client.println("Connection: close");
     client.println();
   }
