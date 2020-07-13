@@ -24,17 +24,17 @@
 #include <SPI.h>
 #include <WiFiNINA.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secret.h" 
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = SECRET_SSID;           // your network SSID (name)
-char pass[] = "SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
+char ssid[] = SECRET_SSID;           
+char pass[] = SECRET_PASS;    
 int keyIndex = 0;                          // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 // if you don't want to use DNS (and reduce your sketch size)
 // use the numeric IP instead of the name for the server:
 //IPAddress server(74,125,232,128);  // numeric IP for Google (no DNS)
-char server[] = "http://numbersapi.com";    // name address for Google (using DNS)
+char server[] = "numbersapi.com";    // name address for Google (using DNS)
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
@@ -78,7 +78,7 @@ void setup() {
   if (client.connect(server, 80)) {
     Serial.println("connected to server");
     // Make a HTTP request:
-    client.println("GET /1729 HTTP/1.1");
+    client.println("GET /1729");
     client.println("Host: http://numbersapi.com");
     client.println("Connection: close");
     client.println();
