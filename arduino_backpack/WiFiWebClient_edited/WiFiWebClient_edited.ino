@@ -6,13 +6,13 @@
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;           
 char pass[] = SECRET_PASS;    
-int keyIndex = 0;                          // your network key Index number (needed only for WEP)
+int keyIndex = 0;                            // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 // if you don't want to use DNS (and reduce your sketch size)
 // use the numeric IP instead of the name for the server:
 // IPAddress server(74,125,232,128);  // numeric IP for Google (no DNS)
-char server[] = "rogers.onshape.com";     // name address for Google (using DNS)
+// char server[] = "rogers.onshape.com";     // name address for Google (using DNS)
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
@@ -56,24 +56,47 @@ void setup() {
 
   Serial.println("\nStarting connection to server...");
   // if you get a connection, report back via serial:
-  if (client.connect(server, 80)) {
+  if (client.connect("rogers.onshape.com", 80)) { // HTTPS 443, and HTTP 80  
     Serial.println("connected to server");
+    
     // Make a HTTP request:
-    client.println("GET /api/partstudios/d/aa5f5cb08903b53f224287e0/w/e1f73355bdbd9a727fdd999e/e/1dac61a51b000e06dd9a37a6/features?");
-    // https://rogers.onshape.com/
-    client.println("Host: https://rogers.onshape.com/");
-    client.println("On-Nonce: 1XQDCD9VkphU13mQKPz6WfoVy");
-    client.println("Accept: application/json");
-    client.println("Authorization: On 0hOovSkonuPVQkxaT9qDMnIF:HmacSHA256:Lk+NLLslg6N+NJCF8VKgV9zXyG3gSL7KUVyUyz1H50g=");
-    client.println("Content-Type: application/json");
-    client.println("Host: Mon, 13 Jul 2020 17:16:26 GMT");
-    client.println("User-Agent: Onshape Python Sample App");
-    /* {'On-Nonce': '1XQDCD9VkphU13mQKPz6WfoVy',
-     *  'Accept': 'application/json',
-     *  'Authorization': 'On 0hOovSkonuPVQkxaT9qDMnIF:HmacSHA256:Lk+NLLslg6N+NJCF8VKgV9zXyG3gSL7KUVyUyz1H50g=',
-     *  'Content-Type': 'application/json',
-     *  'Date': 'Mon, 13 Jul 2020 17:16:26 GMT',
-     *  'User-Agent': 'Onshape Python Sample App'}
+     client.println("GET /api/assemblies/d/dd3414d7ce4a85936fabc2dd/w/2e1ab461aae1e88b62babc36/e/4272ac4853e79613479909d0 HTTP/1.1");
+     client.println("Host:rogers.onshape.com");
+    // client.println("GET /predictions?page%5Blimit%5D=2&sort=arrival_time&filter%5Bdirection_id%5D=1&filter%5Bstop%5D=2373 HTTP/1.1");
+    // client.println("Host: api-v3.mbta.com"); // 443
+     client.println("Content-Type: application/json");
+     client.println("Accept: application/json");
+
+//    client.println("GET /predictions?filter%5Bstop%5D=2379 HTTP/1.1");
+//    client.println("Host: api-v3.mbta.com");
+
+
+    /* numbers api example */
+    // client.println("GET /jokes/random HTTP/1.1"); // 80
+    // client.println("Host: api.icndb.com");
+
+    /* numbers api example */
+    // client.println("GET /1729");  // 80
+    // client.println("Host: http://numbersapi.com");
+    
+    // https://rogers.onshape.com/api/partstudios/d/aa5f5cb08903b53f224287e0/w/e1f73355bdbd9a727fdd999e/e/1dac61a51b000e06dd9a37a6/features?
+    // https://api-v3.mbta.com/predictions?page%5Blimit%5D=2&sort=arrival_time&filter%5Bdirection_id%5D=1&filter%5Bstop%5D=2373
+    // http://api.icndb.com/jokes/random 
+  
+
+    /* Onshape headers */
+//     client.println("On-Nonce: WbLKbbbj8iIRNhE3pY6DpOd26");
+//     client.println("Accept: application/json");
+//     client.println("Authorization: On 0hOovSkonuPVQkxaT9qDMnIF:HmacSHA256:Ld5BB+rxx3XeVpsAlZ3zeJvzEuNrbHpPm7teunHo/jM=");
+//     client.println("Content-Type: application/json");
+//     client.println("Host: Mon, 13 Jul 2020 17:52:04 GMT");
+//     client.println("User-Agent: Onshape Python Sample App");
+    /* {‘On-Nonce’: ‘WbLKbbbj8iIRNhE3pY6DpOd26’,
+     *  ‘Accept’: ‘application/json’,
+     *  ‘Authorization’: ‘On 0hOovSkonuPVQkxaT9qDMnIF:HmacSHA256:Ld5BB+rxx3XeVpsAlZ3zeJvzEuNrbHpPm7teunHo/jM=’,
+     *  ‘Content-Type’: ‘application/json’,
+     *  ‘Date’: ‘Mon, 13 Jul 2020 17:52:04 GMT’,
+     *  ‘User-Agent’: ‘Onshape Python Sample App’}
      */
     client.println("Connection: close");
     client.println();
