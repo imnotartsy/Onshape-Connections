@@ -23,15 +23,16 @@ import copy
 #  this file. A transform args objects is an array of seven values:
 #  [tx, ty, tz, rx, ry, rz, w] (translate x, y, z, then the rotation axis and angle)
 commonTransforms = {
-                    #[ tx,   ty,   tz,   rx,   ry,   rz,   w  ]
-    'transUp' :      [ 0.0,  0.0,  1.0,  0.0,  0.0,   0.0,   0.0],
-    'transDown':     [ 0.0,  0.0, -1.0,  0.0,  0.0,   0.0,   0.0],
-    'transRight':    [ 1.0,  0.0,  0.0,  0.0,  0.0,   0.0,   0.0],
-    'transLeft':     [-1.0,  0.0,  0.0,  0.0,  0.0,   0.0,   0.0],
-    'transForward':  [ 0.0,  1.0,  0.0,  0.0,  0.0,   0.0,   0.0],
-    'transBackwards':[ 0.0, -1.0,  0.0,  0.0,  0.0,   0.0,   0.0],
+                    #[ tx,   ty,   tz,   rx,   ry,    rz,   w    ]
+    'transUp' :      [ 0.0,  0.0,  1.0,  0.0,  0.0,   0.0,    0.0],
+    'transDown':     [ 0.0,  0.0, -1.0,  0.0,  0.0,   0.0,    0.0],
+    'transRight':    [ 1.0,  0.0,  0.0,  0.0,  0.0,   0.0,    0.0],
+    'transLeft':     [-1.0,  0.0,  0.0,  0.0,  0.0,   0.0,    0.0],
+    'transForward':  [ 0.0,  1.0,  0.0,  0.0,  0.0,   0.0,    0.0],
+    'transBackwards':[ 0.0, -1.0,  0.0,  0.0,  0.0,   0.0,    0.0],
     'rot30ccZ':      [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,   30.0],
     'rot90ccZ':      [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,   90.0],
+    # 'rot180ccZ':     [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,  180.0],
 
 
     'leftside':      [ 0.0,  0.0,  0.0,  1.0,  0.0,   0.0,  -90.0], # 5
@@ -173,7 +174,11 @@ def decodeMatrix(M, verbose):
     ty = M[7]
     tz = M[11]
 
-    w_rad = 1/2 * math.acos(1 - 1/2 * (math.pow((M[9] - M[6]),2) + math.pow((M[2] - M[8]),2) + pow((M[4] - M[1]),2)))
+    try:
+        w_rad = 1/2 * math.acos(1 - 1/2 * (math.pow((M[9] - M[6]),2) + math.pow((M[2] - M[8]),2) + pow((M[4] - M[1]),2)))
+    except:
+        print("Out of bounds, position may be printed wrong")
+        w_rad = 0
     sc = math.sin(w_rad/2) * math.cos(w_rad/2)
 
     if (sc != 0):

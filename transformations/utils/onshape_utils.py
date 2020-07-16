@@ -26,45 +26,58 @@ def getAssemblyInfo(verbose):
     response = api.callAPI('assembly-definition', payload , params, True)
     # print(response)
 
-    ### Creates Part List
-    parts = {}
+    ### Return Data Structure: a dict of part-objects with their id as the key
+    #     assemblyReturn = {
+    #         part_id : {
+    #             "fullId": [],
+    #             "position": [], # transformation matrix
+    #             "partName": ""
+    #             "type": ""
+    #         }
+    #     }
 
+    assemblyReturn = {}
+
+    ### Gets Positions and Paths
+    for occurrence in response["rootAssembly"]["occurrences"]:
+        # Creates each part-object
+        part = {
+            "fullPath": occurrence["path"],
+            "position": occurrence["transform"],
+            "partName": "",
+            "type": ""
+        }
+        assemblyReturn[occurrence["path"][len(occurrence["path"])-1]] = part
+        
+
+    ### Gets Part Names and Part Types
     if (verbose):
         print("Parts in assembly:")
+
     for instance in response["rootAssembly"]["instances"]:
         if(verbose): print("  ", instance["id"], ":", instance["name"])
-        parts[instance["id"]] = instance["name"]
+        assemblyReturn[instance["id"]]["partName"] = instance["name"]
+        assemblyReturn[instance["id"]]["type"] = instance["type"]
     
     # Now Prints individual parts in subassemblies!
     for assembly in response["subAssemblies"]:
         for instance in assembly["instances"]:
             if(verbose): print("  ", instance["id"], ":", instance["name"])
-            parts[instance["id"]] = instance["name"]
+            assemblyReturn[instance["id"]]["partName"] = instance["name"]
+            assemblyReturn[instance["id"]]["type"] = instance["type"]
     if(verbose): print()
 
+    
+    # Debug Printing
+    # for partID in assemblyReturn:
+    #     print(partID)
+    #     # print("\t", assemblyReturn[partID])
+    #     print("\t", assemblyReturn[partID]["fullId"])
+    #     print("\t", assemblyReturn[partID]["position"])
+    #     print("\t", assemblyReturn[partID]["partName"])
+    #     print("\t", assemblyReturn[partID]["type"])
 
-    ### Gets Positions and Paths
-    ### Gets Paths
-    positions = {}
-    paths = {}
-
-    for occurrence in response["rootAssembly"]["occurrences"]:
-        positions[occurrence["path"][len(occurrence["path"])-1]] = occurrence["transform"]
-        # print(occurrence["transform"])
-        paths[occurrence["path"][len(occurrence["path"])-1]] = occurrence["path"]
-
-
-    # for part in parts:
-    #     print(part, parts[part])
-
-    # for identifier in positions:
-    #     print(identifier, positions[identifier])
-
-
-    # print(parts)
-    # print(positions)
-
-    return [parts, positions, paths]
+    return assemblyReturn
 
 
 # postTransform() - Calls 'occurence-transforms'
@@ -89,7 +102,7 @@ def postTransform(M, isRelative, parts, verbose):
             "path": part
         }
         payload["occurrences"].append(occurance)
-    # print(json.dumps(payload, indent = 2))
+    # print(json.dumps(payload, indent = 2)) # debugging for printing payload
 
     if (verbose): print(payload)
     params = {}

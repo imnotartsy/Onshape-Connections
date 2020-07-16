@@ -32,15 +32,12 @@ api.checkArgs(True)
 #############################################
 
 ### Get Assembly Information from the API
-assembly = onshape.getAssemblyInfo(True)
-parts = assembly[0]
-positions = assembly[1]
-paths = assembly[2]
+assemblyInfo = onshape.getAssemblyInfo(True)
 
 ## Print Parts and Positions (decode their transfomation arrays)
-for identifier in positions:
-    print(parts[identifier], "(" + identifier + ")") # [len(parts[identifier])-1]
-    transform.decodeMatrix(positions[identifier], True)
+for identifier in assemblyInfo:
+    print(assemblyInfo[identifier]["partName"], "(" + identifier + ")")
+    transform.decodeMatrix(assemblyInfo[identifier]["position"], True)
     print()
 
 
@@ -85,10 +82,11 @@ if (transform.promptUser("Do you want to perform a transform?")):
     ### Gets List of Parts to Transform
     partsToTransform = []
     print("What Parts do you want to transform?")
-    for part in parts:
-        query = "\tTransform {partName}?".format(partName = parts[part])
+    for identifier in assemblyInfo:
+        query = "\tTransform {partName}?".format(partName = assemblyInfo[identifier]["partName"])
         if (transform.promptUser(query)):
-            partsToTransform.append(paths[part])
+            partsToTransform.append(assemblyInfo[identifier]["fullPath"])
+        
     print()
 
     ### Performs API call
@@ -109,11 +107,9 @@ print()
 
 ### Get Assembly Information from the API
 assemblyAfter = onshape.getAssemblyInfo(False)
-partsAfter = assemblyAfter[0]
-positionsAfter = assemblyAfter[1]
 
 ### Print Parts and Positions
-for identifier in positions:
-    print(partsAfter[identifier], "(" + identifier + ")")
-    transform.decodeMatrix(positionsAfter[identifier], True)
+for identifier in assemblyInfo:
+    print(assemblyAfter[identifier]["partName"], "(" + identifier + ")")
+    transform.decodeMatrix(assemblyAfter[identifier]["position"], True)
     print()
