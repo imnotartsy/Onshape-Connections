@@ -34,24 +34,37 @@ def getAssemblyInfo(verbose):
     for instance in response["rootAssembly"]["instances"]:
         if(verbose): print("  ", instance["id"], ":", instance["name"])
         parts[instance["id"]] = instance["name"]
+    
+    # Now Prints individual parts in subassemblies!
+    for assembly in response["subAssemblies"]:
+        for instance in assembly["instances"]:
+            if(verbose): print("  ", instance["id"], ":", instance["name"])
+            parts[instance["id"]] = instance["name"]
     if(verbose): print()
 
 
-    ### Gets current position
+    ### Gets Positions and Paths
+    ### Gets Paths
     positions = {}
+    paths = {}
 
-    # print("Positions of parts")
     for occurrence in response["rootAssembly"]["occurrences"]:
-        # print("  ", occurrence["path"][0],":", occurrence["transform"])
-        # positions[occurrence["path"][0]] = occurrence["transform"] ## update so it takes the last path 
         positions[occurrence["path"][len(occurrence["path"])-1]] = occurrence["transform"]
-        print(positions[occurrence["path"][len(occurrence["path"])-1]])
-        print(occurrence["transform"])
+        # print(occurrence["transform"])
+        paths[occurrence["path"][len(occurrence["path"])-1]] = occurrence["path"]
 
-    print(parts)
-    print(positions)
 
-    return [parts, positions]
+    # for part in parts:
+    #     print(part, parts[part])
+
+    # for identifier in positions:
+    #     print(identifier, positions[identifier])
+
+
+    # print(parts)
+    # print(positions)
+
+    return [parts, positions, paths]
 
 
 # postTransform() - Calls 'occurence-transforms'
@@ -73,7 +86,7 @@ def postTransform(M, isRelative, parts, verbose):
 
     for part in parts:
         occurance = {
-            "path": [part]
+            "path": part
         }
         payload["occurrences"].append(occurance)
     # print(json.dumps(payload, indent = 2))

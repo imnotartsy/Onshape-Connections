@@ -35,12 +35,14 @@ api.checkArgs(True)
 assembly = onshape.getAssemblyInfo(True)
 parts = assembly[0]
 positions = assembly[1]
+paths = assembly[2]
 
-### Print Parts and Positions (decode their transfomation arrays)
+## Print Parts and Positions (decode their transfomation arrays)
 for identifier in positions:
-    print(parts[identifier], "(" + identifier + ")")
+    print(parts[identifier], "(" + identifier + ")") # [len(parts[identifier])-1]
     transform.decodeMatrix(positions[identifier], True)
     print()
+
 
 #############################################
 #                                           #
@@ -86,7 +88,7 @@ if (transform.promptUser("Do you want to perform a transform?")):
     for part in parts:
         query = "\tTransform {partName}?".format(partName = parts[part])
         if (transform.promptUser(query)):
-            partsToTransform.append(part)
+            partsToTransform.append(paths[part])
     print()
 
     ### Performs API call
