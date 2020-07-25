@@ -5,7 +5,7 @@
 # Date: 6/26/20
 # Description: Main driver file for Onshape Transformations
 # History: 
-#    Last modified by Teo 7/2/20
+#    Last modified by Teo 7/15/20
 # (C) Tufts Center for Engineering Education and Outreach (CEEO)
 ###############################################################################
 
@@ -61,9 +61,6 @@ if (transform.promptUser("Do you want to perform a transform?")):
     transformArgs = []
     if (userIn.upper() == 'N' or userIn.upper() == 'NEW'):
         args = transform.readInTransformObject()
-    # elif (userIn == 't'): # quick transform for debugging
-    #     print("\tDebugging transform selected.")
-    #     args = [0.1,  0.1,  0.0,  0.0,  0.0,   0.0,   0.0]
     else:
         try:
             args = transform.commonTransforms[userIn]
