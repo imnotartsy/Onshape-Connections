@@ -1,3 +1,13 @@
+###############################################################################  
+# Project name: Onshape Transformations
+# File name: onshape_utils.py
+# Author: Therese (Teo) Patrosio @imnotartsy
+# Date: 6/26/20
+# Description: Functions for specific onshape API calls; uses api_utils.py
+# History: 
+#    Last modified by Teo 7/25/20
+# (C) Tufts Center for Engineering Education and Outreach (CEEO)
+###############################################################################
 import utils.api_utils as api
 import json
 
@@ -79,6 +89,12 @@ def getAssemblyInfo(verbose):
 
     return assemblyReturn
 
+#############################################
+#                                           #
+#       Occurence Transforms API Call       #
+#                                           #
+#############################################
+
 
 # postTransform() - Calls 'occurence-transforms'
 # Parameters:
@@ -116,3 +132,62 @@ def postTransform(M, isRelative, parts, verbose):
         exit();
 
     return "success"
+
+
+#############################################
+#                                           #
+#              Feature API Calls            #
+#                                           #
+#############################################
+
+# getFeatureList() - for getting feature list (7.16.20)
+#   for onshape- team
+# Parameters:
+#
+# Returns:
+#
+# def getFeatureList(verbose):
+#     payload = {}
+#     params = {}
+
+#     response = api.callAPI('feature-list', payload , params, True)
+
+#     featureReturn = {}
+
+#     featureReturn["serializationVersion"]   = response["serializationVersion"]
+#     featureReturn["sourceMicroversion"]     = response["sourceMicroversion"]
+
+#     featureReturn["features"] = response["features"]
+
+#     if(verbose):
+#         print(json.dumps(response, indent = 2)) # debugging for printing payload
+
+#     return featureReturn
+
+# postFeature() - for editting features (7.16.20)
+#   for onshape- team
+# Parameters:
+#
+# Returns:
+#
+# def postFeature(serialV, microV, feature, verbose):
+#     payload = {
+#       "feature": feature,
+#       "serializationVersion": serialV,
+#       "sourceMicroversion": microV
+#     }
+#     params = {}
+
+#     try:
+#         response = api.callAPI('add-feature', payload , params, True)
+#     except ApiException as error:
+#         print("Invalid Request!")
+#         print("Sever message:", error.body)
+#         print("Ending. . .")
+#         exit();
+
+#     print(json.dumps(response, indent = 2)) # debugging for printing payload
+
+#     return response
+
+
