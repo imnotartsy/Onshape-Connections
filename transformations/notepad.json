@@ -48,6 +48,11 @@ python3 transforms.py -d 12ae4e8452feed57f993bda3 -w bbe3cde5759d1f0c7b2a6f0f -e
 python3 transforms.py -d 12ae4e8452feed57f993bda3 -w bbe3cde5759d1f0c7b2a6f0f -e 19d07ad5e095d8e008c522b3
 python3 transforms.py -d 12ae4e8452feed57f993bda3 -w bbe3cde5759d1f0c7b2a6f0f -e 866bf4cbbb1497e5cad582c5
 
+
+### Nested Assemblies
+python3 transforms.py -d dd3414d7ce4a85936fabc2dd -w 2e1ab461aae1e88b62babc36 -e f972fe95a1b305aec85caf4b
+https://rogers.onshape.com/api/assemblies/d/dd3414d7ce4a85936fabc2dd/w/2e1ab461aae1e88b62babc36/e/f972fe95a1b305aec85caf4b
+
 assembly definition:
 https://rogers.onshape.com/api/assemblies/d/ede5b298fabfaa8e77cfce0fd/w/2886cd6354fd48b86595d86d/e/6d6ae652917f4f958770cd1f?includeMateFeatures=true
 https://rogers.onshape.com/api/assemblies/d/ede5b298fabfaa8e77cfce0f/w/2886cd6354fd48b86595d86d/e/6d6ae652917f4f958770cd1f
@@ -57,6 +62,10 @@ https://rogers.onshape.com/api/assemblies/d/dd3414d7ce4a85936fabc2dd/w/2e1ab461a
 
 https://rogers.onshape.com/api/assemblies/d/dd3414d7ce4a85936fabc2dd/w/2e1ab461aae1e88b62babc36/e/311ad6e8747c57d315ab0332/occurrencetransforms
 
+
+### Box and Plane Parts
+python3 features.py -d dd3414d7ce4a85936fabc2dd -w 2e1ab461aae1e88b62babc36 -e 7174e4378bb70c9e5468a25d
+https://rogers.onshape.com/documents/dd3414d7ce4a85936fabc2dd/w/2e1ab461aae1e88b62babc36/e/7174e4378bb70c9e5468a25d
 
 
 ### Transform headers
