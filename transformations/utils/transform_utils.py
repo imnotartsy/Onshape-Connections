@@ -6,7 +6,7 @@
 # Description: Functions to do with transform arg objects and transform matrces
 # Credits/inspirations: Transform matrix math help from Andrew Daetz and Milan
 # History: 
-#    Last modified by Teo 7/2/20
+#    Last modified by Teo 7/24/20
 # (C) Tufts Center for Engineering Education and Outreach (CEEO)
 ###############################################################################
 
@@ -35,12 +35,19 @@ commonTransforms = {
     # 'rot180ccZ':     [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,  180.0],
 
 
+    # Dice Demo transforms
     'leftside':      [ 0.0,  0.0,  0.0,  1.0,  0.0,   0.0,  -90.0], # 5
     'rightside':     [ 0.0,  0.0,  0.0,  1.0,  0.0,   0.0,   90.0], # 2
     'down':          [ 0.0,  0.0,  0.0,  1.0,  0.0,   0.0,  180.0], # 6
     'up':            [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,   90.0], # 1 
     'front':         [ 0.0,  0.0,  0.0,  0.0,  1.0,   0.0,   90.0], # 3
     'back':          [ 0.0,  0.0,  0.0,  0.0,  1.0,   0.0,  -90.0], # 4
+
+    # Color Demo transforms
+    'yellow':        [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,    -30],
+    'red':           [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,    -15],
+    'blue':          [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,      1],    #
+    'green':         [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,   30.0]
 }
 
 #############################################

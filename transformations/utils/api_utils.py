@@ -20,9 +20,13 @@ urls = {
             ['POST', '/api/featurestudios/d/did/w/wid'],
         'assembly-definition':
             ['GET', '/api/assemblies/d/did/w/wid/e/eid'],
-        # ?includeMateFeatures=OPT1&includeNonSolids=OPT2e&includeMateConnectors=OPT3
+# ?includeMateFeatures=OPT1&includeNonSolids=OPT2e&includeMateConnectors=OPT3
         'occurrence-transforms':
             ['POST','/api/assemblies/d/did/w/wid/e/eid/occurrencetransforms'],
+        'feature-list':
+            ['GET', '/api/partstudios/d/did/w/wid/e/eid/features'], #?noSketchGeometry=false
+        'add-feature':
+            ['POST', '/api/partstudios/d/did/w/wid/e/eid/features']
 }
 
 #############################################
