@@ -1,6 +1,6 @@
 ###############################################################################  
 # Project name: Onshape Transformations
-# File name: bluetooth_dice_demo.py
+# File name: dice_demo.py
 # Author: Therese (Teo) Patrosio @imnotartsy
 # Date: 6/26/20
 # Description: Connects spike bluetooth to onshape api for 7/7 demo

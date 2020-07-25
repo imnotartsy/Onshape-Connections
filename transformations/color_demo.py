@@ -1,6 +1,6 @@
 ###############################################################################  
-# Project name: Onshape Transformations
-# File name: bluetooth_dice_demo.py
+# Project name: Color Demo
+# File name: color_demo.py
 # Author: Therese (Teo) Patrosio @imnotartsy
 # Date: 7/21/20
 # Description: Connects spike bluetooth to onshape api for 7/23 demo
