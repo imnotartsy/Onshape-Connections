@@ -25,8 +25,7 @@ for i in range(0,2):
     print(line.decode(), end="")
 
 
-### Catch case for if spike goes into data spewing mode (untested) (WIP)
-# Cancels any Data Sending
+### Catch case for if spike goes into data spewing mode
 ser.write('\x03'.encode())
 ser.write('\x03'.encode())
 ser.write('\x03'.encode())
