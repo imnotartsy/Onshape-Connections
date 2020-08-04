@@ -5,7 +5,7 @@
 # Date: 7/21/20
 # Description: Connects spike bluetooth to onshape api for 7/23 demo
 # History: 
-#    Last modified by Teo 7/24/20
+#    Last modified by Teo 7/29/20
 # (C) Tufts Center for Engineering Education and Outreach (CEEO)
 ###############################################################################
 
@@ -15,6 +15,7 @@ import utils.onshape_utils as onshape
 import argparse 
 from datetime import datetime
 
+
 ### Connect to Serial 
 ser = serial.Serial('/dev/tty.LEGOHubOwen-SerialPortP')
 
@@ -23,6 +24,7 @@ for i in range(0,2):
     line = ser.readline()
     print(line.decode(), end="")
 
+
 ### Catch case for if spike goes into data spewing mode (untested) (WIP)
 # Cancels any Data Sending
 ser.write('\x03'.encode())
@@ -30,23 +32,18 @@ ser.write('\x03'.encode())
 ser.write('\x03'.encode())
 ser.write('\x03'.encode())
 
+
 ### Message to send to serial
 ## This program gets the gesture of the spike
 message = """
 import hub,utime\r\n
-# import sys\r\n
-from spike.control import wait_for_seconds\r\n
+# from spike.control import wait_for_seconds\r\n
 
-for i in range (0, 1000):\r\n\b\b
-    # readin = input()\r\n\b
-    readin = read(10)\r\n\b
-    readin = sys.stdin.read(10)\r\n\b
-    print(readin)\r\n\b
-    # angle = hub.port.A.motor.get()[2]\r\n\b
-    # print(360 - angle)\r\n\b\b\b
-    wait_for_seconds(1)\r\n\b\b
+def setMotor(large, small):\r\n\b\b
+    hub.port.C.motor.run_to_position(large, 50)\r\n\b
+    hub.port.D.motor.run_to_position(small, 50)\r\n\b
 
-\r\n\r\n\r\n\r\n
+# print("RUNNING!")
 \r\n\r\n\r\n\r\n
 """ 
 
@@ -54,71 +51,55 @@ print(message)
 ser.write('\x03'.encode())
 ser.write(message.encode())
 
-# last = 0
-# assembly = onshape.getAssemblyInfo(False)
-# print(assembly["MvFKyhclA9pW5axe3"]["fullPath"])
 
-print("read 1")
-line = ser.readline()
-## Prints serial line
-print(line.decode(), end="")
+## Reads message, checks for syntax errors
+for i in range (0, 12):
+    line = ser.readline()
+    print(line.decode(), end="")
 
-print("read 2")
-line = ser.readline()
-## Prints serial line
-print(line.decode(), end="")
+
+
+last_largeAngle = 0
+last_smallAngle = 0
 
 ### Read Data and call API
-for i in range(0,1000):
+for i in range(0, 1000):
     
-    print("read", i)
-    line = ser.readline()
-    ## Prints serial line
-    print(line.decode(), end="")
-    print("AAAAA", i)
 
+    ## Gets Assembly Information
+    assembly = onshape.getAssemblyInfo(False)
 
-    # message = """
-    # import hub,utime\r\n
-    # import sys\r\n
-    # from spike.control import wait_for_seconds\r\n
+    ## Large Motor - MzWJgxFiO/4uQvXjc
+    largePos = transform.decodeMatrix(assembly["MzWJgxFiO/4uQvXjc"]["position"], False)
+    # Transform matrix for rot90ccY transformation
+    toRemove = transform.getTranslationMatrix(transform.commonTransforms['rot90ccY'], False)
+    # Gets filtered position (in the form of a transform matrix)
+    filteredPos = transform.removeRot(assembly["MzWJgxFiO/4uQvXjc"]["position"], toRemove, False)
+    largePosNew = transform.decodeMatrix(filteredPos, False)
+    largeAngle = int(largePosNew[6])
+    print("\t Large Angle:", largeAngle)
+    
 
-    # for i in range (0, 1000):\r\n\b\b
-    #     # readin = input()\r\n\b
-    #     readin = sys.stdin.read(10)\r\n\b
-    #     print("Read:", readin)\r\n\b
-    #     # angle = hub.port.A.motor.get()[2]\r\n\b
-    #     # print(360 - angle)\r\n\b\b\b
-    #     wait_for_seconds(1)\r\n\b\b
+    ## Small Motor - MvFKyhclA9pW5axe3
+    smallPos = transform.decodeMatrix(assembly["MvFKyhclA9pW5axe3"]["position"], False)
+    smallAngle = int(smallPos[6])
+    print("\t Small Angle:", smallAngle)
+    
 
-    # \r\n\r\n\r\n\r\n
-    # """ 
+    # Check if largePos or smallPos has changed
+    if (largeAngle is not last_largeAngle or smallAngle is not last_smallAngle):
+        message = """\r\n\b\b\b\bsetMotor({large}, {small})\r\n\b\b\b\b""".format(large=largeAngle, small=smallAngle)
+        ser.write(message.encode())
+        last_largeAngle = largeAngle
+        last_smallAngle = smallAngle
 
-    # print(message)
-    # if(line.decode().contains(">>>")):
-    #     ser.write('\x03'.encode())
-    #     ser.write(message.encode())
+        ## Reads from serial
+        line = ser.readline()
+        print(line.decode(), end="")
 
-    # try:
-    #     curr = int(line.decode())
-    # except:
-    #     print("position not updated")
-    #     curr = last
-
-
-    ## If state changes, call a transform
-    # if(abs(curr - last) > 5):
-
-    #     ## Sets transformation
-    #     args = [0, 0, 0, 0, 0, 1, curr]
-
-    #     ## Transforms set up (get matrix and part id from assembly info)
-    #     M = transform.getTranslationMatrix(args, False)
-    #     partsToTransform = [assembly["MvFKyhclA9pW5axe3"]["fullPath"]] # selects motor axle
-
-    #     state = onshape.postTransform(M, False, partsToTransform, False)
-    #     print("\tTransformation status:", state, datetime.now())
-    #     last = curr
+        ## Reads from serial
+        line = ser.readline()
+        print(line.decode(), end="")
 
 
 ser.close()
