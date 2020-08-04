@@ -6,12 +6,21 @@
 # Description: Functions to do with transform arg objects and transform matrces
 # Credits/inspirations: Transform matrix math help from Andrew Daetz and Milan
 # History: 
-#    Last modified by Teo 7/24/20
+#    Last modified by Teo 8/4/20
 # (C) Tufts Center for Engineering Education and Outreach (CEEO)
 ###############################################################################
 
 import math
+import numpy as np
 import copy
+
+### Note
+# There are three main types of data structures in this file:
+#  - transform args
+#  - transformation matrices
+#  - normal 2D matrices (only internal temps use and are never parameters)
+# These are defined as they are used.
+
 
 #############################################
 #                                           #
@@ -34,7 +43,6 @@ commonTransforms = {
     'rot90ccZ':      [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,   90.0],
     # 'rot180ccZ':     [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,  180.0],
 
-
     # Dice Demo transforms
     'leftside':      [ 0.0,  0.0,  0.0,  1.0,  0.0,   0.0,  -90.0], # 5
     'rightside':     [ 0.0,  0.0,  0.0,  1.0,  0.0,   0.0,   90.0], # 2
@@ -46,9 +54,14 @@ commonTransforms = {
     # Color Demo transforms
     'yellow':        [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,    -30],
     'red':           [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,    -15],
-    'blue':          [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,      1],    #
-    'green':         [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,   30.0]
+    'blue':          [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,      1], # offset
+    'green':         [ 0.0,  0.0,  0.0,  0.0,  0.0,   1.0,   30.0],
+
+    # Two Motor Demo transforms
+    'rot90ccY':      [ 0.0,  0.0,  0.0,  0.0,  1.0,   0.0,     90]
 }
+
+
 
 #############################################
 #                                           #
@@ -73,6 +86,7 @@ def readInTransformObject():
             exit()
     
     return args
+
 
 # promtUser() - Asks user a query string that has a yes or no answer
 # Parameters:
@@ -166,6 +180,7 @@ def getTranslationMatrix(translation, verbose):
         prettyPrintMatrix(M)
     return M
 
+
 # getTranslationMatrix() - Generates translation args object from a transform
 #   matrix
 # Parameters:
@@ -185,7 +200,7 @@ def decodeMatrix(M, verbose):
         w_rad = 1/2 * math.acos(1 - 1/2 * (math.pow((M[9] - M[6]),2) + math.pow((M[2] - M[8]),2) + pow((M[4] - M[1]),2)))
     except:
         print("Out of bounds, position may be printed wrong")
-        w_rad = 0
+        w_rad = 1/2 * math.acos(2 - 1/2 * (math.pow((M[9] - M[6]),2) + math.pow((M[2] - M[8]),2) + pow((M[4] - M[1]),2)))
     sc = math.sin(w_rad/2) * math.cos(w_rad/2)
 
     if (sc != 0):
@@ -228,6 +243,109 @@ def returnToOriginx(translation, verbose):
         prettyPrintPosition(new_translation)
     return translation
 
+
+# removeRot() - Removes a rotation from a parent transformation
+# Parameters:
+#   M - a transformation matrix
+#   remove - a transformat
+#   verbose - a boolean value for if the new transform args should be printed
+# Returns:
+#   A transform matrix.
+def removeRot(M, remove, verbose): #remove, 
+
+    removeInv = inverse(remove)
+
+    ## Uses multiply Inner so the tx, ty, tz values do not interfere
+    result = multiplyInner(M, removeInv)
+
+    if (verbose):
+        prettyPrintMatrix(result)
+    return result
+
+
+
+#############################################
+#                                           #
+#           Matrix Math (Generic)           #
+#                                           #
+#############################################
+
+# These functinos use the numpy linalg library which requires standard
+# 2D matrices.
+
+# Matrix format
+#   M[0]     M[1]     M[2]     M[3]
+#   M[4]     M[5]     M[6]     M[7]
+#   M[8]     M[9]     M[10]    M[11]
+#   M[12]    M[13]    M[14]    M[15]
+
+# inverse() - creates the inverse matrix
+# Parameters:
+#   M - the input transformation matrix
+# Returns:
+#  The resultant transformation matrix
+def inverse(M):    
+    X = np.array([[M[0],   M[1],   M[2],    M[3]],
+                  [M[4],   M[5],   M[6],    M[7]],
+                  [M[8],   M[9],  M[10],   M[11]],
+                 [M[12],  M[13],  M[14],   M[15]]])
+
+    Z = np.linalg.inv(X)
+    C = [Z[0][0],   Z[0][1],  Z[0][2],  Z[0][3],
+         Z[1][0],   Z[1][1],  Z[1][2],  Z[1][3],
+         Z[2][0],   Z[2][1],  Z[2][2],  Z[2][3],
+         Z[3][0],   Z[3][1],  Z[3][1],  Z[3][3]]
+    return C
+
+
+# multiply() - Multiplies matrix A and B
+# Parameters:
+#   A - the first transformation matrix
+#   B - the second transformation matrix
+# Returns:
+#   The resultant transformation matrix
+def multiply(A, B):
+    X = ([[A[0],   A[1],   A[2],    A[3]],
+          [A[4],   A[5],   A[6],    A[7]],
+          [A[8],   A[9],  A[10],   A[11]],
+         [A[12],  A[13],  A[14],   A[15]]])
+
+    Y = ([[B[0],   B[1],   B[2],    B[3]],
+          [B[4],   B[5],   B[6],    B[7]],
+          [B[8],   B[9],  B[10],   B[11]],
+         [B[12],  B[13],  B[14],   B[15]]])
+
+    Z = np.matmul(X, Y)
+
+    C = [Z[0][0],   Z[0][1],  Z[0][2],  Z[0][3],
+         Z[1][0],   Z[1][1],  Z[1][2],  Z[1][3],
+         Z[2][0],   Z[2][1],  Z[2][2],  Z[2][3],
+         Z[3][0],   Z[3][1],  Z[3][1],  Z[3][3]]
+
+    return C
+
+
+# multiplyInner() - Multiplies matrix A and B
+#   Note this function assumes these will be 4x4 matrices and will multiply the
+#      inside 3x3 (in the top left)
+# Parameters:
+#   A - the first transformation matrix
+#   B - the second transformation matrix
+# Returns:
+#   The resultant transformation matrix (with the original matrices outer edge values)
+def multiplyInner(A, B):
+    X = np.array([[A[0], A[1], A[2]], [A[4], A[5], A[6]], [A[8], A[9], A[10]]])
+    Y = np.array([[B[0], B[1], B[2]], [B[4], B[5], B[6]], [B[8], B[9], B[10]]])
+
+    Z = np.matmul(X, Y)
+    C = [Z[0][0],   Z[0][1],  Z[0][2],   A[3],
+         Z[1][0],   Z[1][1],  Z[1][2],   A[6],
+         Z[2][0],   Z[2][1],  Z[2][2],  A[11],
+           A[12],     A[13],    A[14],  A[15]]
+    return C
+
+
+
 #############################################
 #                                           #
 #          General Helper Functions         #
@@ -253,7 +371,7 @@ def prettyPrintPosition(posArray):
                                         '\t', round(posArray[4], 5),
                                         '\t', round(posArray[5], 5),
                                         '\t', round(posArray[6], 5))
-    print("Rotation ux, uy, uz, alpha): \t", posArray[3], # unrounded
-                                       '\t', posArray[4],
-                                       '\t', posArray[5],
-                                       '\t', posArray[6])
+    # print("Rotation ux, uy, uz, alpha): \t", posArray[3], # unrounded
+    #                                    '\t', posArray[4],
+    #                                    '\t', posArray[5],
+    #                                    '\t', posArray[6])
