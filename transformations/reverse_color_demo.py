@@ -62,7 +62,7 @@ last_largeAngle = 0
 last_smallAngle = 0
 
 ### Read Data and call API
-for i in range(0, 1000):
+for i in range(0, 5000):
     
 
     ## Gets Assembly Information
@@ -76,17 +76,27 @@ for i in range(0, 1000):
     filteredPos = transform.removeRot(assembly["MzWJgxFiO/4uQvXjc"]["position"], toRemove, False)
     largePosNew = transform.decodeMatrix(filteredPos, False)
     largeAngle = int(largePosNew[6])
-    print("\t Large Angle:", largeAngle)
+    if largePosNew[6] < 0:
+        largeAngle = 90 - largeAngle
+    else:
+        largeAngle = 90 + largeAngle
+    print("\t Large Angle:", largePosNew[3], largeAngle)
     
 
     ## Small Motor - MvFKyhclA9pW5axe3
     smallPos = transform.decodeMatrix(assembly["MvFKyhclA9pW5axe3"]["position"], False)
     smallAngle = int(smallPos[6])
-    print("\t Small Angle:", smallAngle)
+    if smallPos[5] < 0:
+        smallAngle = 90 - smallAngle
+    else:
+        smallAngle = 90 + smallAngle
+    print("\t Small Angle:", smallPos[5], smallAngle)
+
+
     
 
     # Check if largePos or smallPos has changed
-    if (largeAngle is not last_largeAngle or smallAngle is not last_smallAngle):
+    if largeAngle is not last_largeAngle or smallAngle is not last_smallAngle:
         message = """\r\n\b\b\b\bsetMotor({large}, {small})\r\n\b\b\b\b""".format(large=largeAngle, small=smallAngle)
         ser.write(message.encode())
         last_largeAngle = largeAngle
