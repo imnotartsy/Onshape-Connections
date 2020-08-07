@@ -1,9 +1,10 @@
 # Python X Onshape X Spike
+
 These scripts connect to an assembly in Onshape.
 ## Projects
 - ```transforms.py``` - It returns the parts, their ids/paths, and positions in an Onshape Assembly, then allows the user to apply transformations upon being prompted (will be prompted for a transformation (tx, ty, tz, rx, ry, rz, w), if the transform is relative, and then prompted for parts.
-*** This is the script you want to start with for any of these following demos, or are just getting started with Onshape Occurrence Transforms.***
 DEMO: https://youtu.be/-olHUShWuLk?t=97
+*** ^ This is the script you want to start with for any of these following demos, or are just getting started with Onshape Occurrence Transforms.***
 
 - ```dice_demo.py``` - This program connects to the spike prime, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position.
 DEMO: https://youtu.be/-olHUShWuLk?t=129
@@ -12,6 +13,7 @@ DEMO: https://youtu.be/-olHUShWuLk?t=129
 DEMO: https://youtu.be/vS1c-fPyupQ?t=5
 
 - ```reverse_color_demo.py``` (often called the "Two motor demo")- This program connects to the spike prime, reads the position of two motors in an assembly in Onshape, and then sends commands to the Spike to update their positions.
+
 DEMO: [WIP]
 
 # Getting Started
@@ -56,3 +58,4 @@ The files should have internal documentation about what all of their functions d
 - ```onshape_client.oas.exceptions.ApiException: (401) Reason: Unauthorized```
 --> api-key is missing
 - if there are errors with missing onshape when running the code, install onshape-client with ```pip3 install onshape-client```
+- Any questions? Shoot me an email tpatro01@tufts.edu
