@@ -76,7 +76,7 @@ for i in range(0, 5000):
     filteredPos = transform.removeRot(assembly["MzWJgxFiO/4uQvXjc"]["position"], toRemove, False)
     largePosNew = transform.decodeMatrix(filteredPos, False)
     largeAngle = int(largePosNew[6])
-    if largePosNew[6] < 0:
+    if largePosNew[6] > 0:
         largeAngle = 90 - largeAngle
     else:
         largeAngle = 90 + largeAngle
@@ -86,7 +86,7 @@ for i in range(0, 5000):
     ## Small Motor - MvFKyhclA9pW5axe3
     smallPos = transform.decodeMatrix(assembly["MvFKyhclA9pW5axe3"]["position"], False)
     smallAngle = int(smallPos[6])
-    if smallPos[5] < 0:
+    if smallPos[5] > 0:
         smallAngle = 90 - smallAngle
     else:
         smallAngle = 90 + smallAngle
