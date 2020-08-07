@@ -1,9 +1,10 @@
 # Python X Onshape X Spike
-
 These scripts connect to an assembly in Onshape.
+
 ## Projects
 - ```transforms.py``` - It returns the parts, their ids/paths, and positions in an Onshape Assembly, then allows the user to apply transformations upon being prompted (will be prompted for a transformation (tx, ty, tz, rx, ry, rz, w), if the transform is relative, and then prompted for parts.
 DEMO: https://youtu.be/-olHUShWuLk?t=97
+
 *** ^ This is the script you want to start with for any of these following demos, or are just getting started with Onshape Occurrence Transforms.***
 
 - ```dice_demo.py``` - This program connects to the spike prime, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position.
@@ -13,10 +14,9 @@ DEMO: https://youtu.be/-olHUShWuLk?t=129
 DEMO: https://youtu.be/vS1c-fPyupQ?t=5
 
 - ```reverse_color_demo.py``` (often called the "Two motor demo")- This program connects to the spike prime, reads the position of two motors in an assembly in Onshape, and then sends commands to the Spike to update their positions.
-
 DEMO: [WIP]
 
-# Getting Started
+# Getting Started/File System
 ## Before Running 
 - To connect to the Onshape API, an api key and secret .
   - This is done here: https://dev-portal.onshape.com > API Keys
@@ -26,7 +26,7 @@ DEMO: [WIP]
   - These can be found in your Onshape document url.
   - Depending on your chosen method of running this program, you will want to keep the did, wid, and eid handy.
 
-## To Run transforms.py
+## To Run ```transforms.py```
 There are two ways of running this script.
 1. Using the format:
 ``` python3 transforms.py -d your-did-here -w your-wid-here -e your-eid-here```
@@ -34,8 +34,20 @@ There are two ways of running this script.
 
 Note: Currently the only way to use the non default cad.onshape.com workspace is to use document preferences
 
-## To Run dice_demo.py
+## To Run ```dice_demo.py```
 - Using ```python3 dice_demo.py -p your-spike-prime-port``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
+
+Note: The current configuration assumes the user has the port, that can be found with ```cd /dev``` and the port that looks like "tty.LEGO-SerialPortP" 
+
+## To Run ```color_demo.py```
+- Using ```python3 color_demo.py``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
+- You will also have to update the Serial port on line 19.
+
+Note: The current configuration assumes the user has the port, that can be found with ```cd /dev``` and the port that looks like "tty.LEGO-SerialPortP" 
+
+## To Run ```reverse_color_demo.py```/"two motor demo"
+- Using ```python3 reverse_color_demo.py``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
+- You will also have to update the Serial port on line 19.
 
 Note: The current configuration assumes the user has the port, that can be found with ```cd /dev``` and the port that looks like "tty.LEGO-SerialPortP" 
 
