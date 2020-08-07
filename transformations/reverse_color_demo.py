@@ -92,7 +92,6 @@ for i in range(0, 5000):
         smallAngle = 90 + smallAngle
     print("\t Small Angle:", smallPos[5], smallAngle)
 
-
     
 
     # Check if largePos or smallPos has changed
