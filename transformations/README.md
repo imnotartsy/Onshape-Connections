@@ -16,6 +16,11 @@ DEMO: https://youtu.be/vS1c-fPyupQ?t=5
 - ```reverse_color_demo.py``` (often called the "Two motor demo")- This program connects to the spike prime, reads the position of two motors in an assembly in Onshape, and then sends commands to the Spike to update their positions.
 DEMO: [WIP]
 
+## WIP's
+- ```continual_rotation.py``` - A script that attempts to rotate a part named "axle <1>" 12 times, 30 degrees. This script was an exploration of rotations not around the origin. This is run the same way as ```transforms.py```
+
+- ```serial_interrupt.py``` - This program is an attempt of a IDE X REPL program, where the user is able to upload a saved file while having live access to the serial and REPL. This is run the same was as dice_demo.py however does not use document-preferences as it is not connected with Onshape.
+
 # Getting Started/File System
 ## Before Running 
 - To connect to the Onshape API, an api key and secret .
