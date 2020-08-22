@@ -1,5 +1,6 @@
 # Python X Onshape X Spike
 These scripts connect to an assembly in Onshape.
+(See other Onshape+ Team work here: https://github.com/tuftsceeo/Onshape-PLUS-Team)
 
 ## Projects
 - ```transforms.py``` - It returns the parts, their ids/paths, and positions in an Onshape Assembly, then allows the user to apply transformations upon being prompted (will be prompted for a transformation (tx, ty, tz, rx, ry, rz, w), if the transform is relative, and then prompted for parts.
