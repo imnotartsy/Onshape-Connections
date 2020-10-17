@@ -1,5 +1,6 @@
 # Python X Onshape X Spike
 These scripts connect to an assembly in Onshape.
+(See other Onshape+ Team work here: https://github.com/tuftsceeo/Onshape-PLUS-Team)
 
 ## Projects
 - ```transforms.py``` - It returns the parts, their ids/paths, and positions in an Onshape Assembly, then allows the user to apply transformations upon being prompted (will be prompted for a transformation (tx, ty, tz, rx, ry, rz, w), if the transform is relative, and then prompted for parts.
@@ -15,12 +16,24 @@ DEMO: https://youtu.be/-olHUShWuLk?t=129
 This program connects to the SPIKE PRIME, sends a script to print out motor angle, and then calls the Onshape API, transforming the assembly motor based on the position of the physical motor.
 DEMO: https://youtu.be/vS1c-fPyupQ?t=5
 
+<<<<<<< HEAD
 - ```reverse_color_demo.py``` - (Onshape to SPIKE)
 (often called the "Two motor demo")- This program connects to the SPIKE PRIME, reads the position of two motors in an assembly in Onshape, and then sends commands to the Spike to update their positions.
 DEMO: https://youtu.be/d_Swo2u1O3U
 
 - ```thingworx-onshape.py``` - (Thingworx to Onshape)
 This program connects to thingworx and constantly updates the first object in the onshape assembly in``` document-preferences```
+=======
+- ```reverse_color_demo.py``` (often called the "Two motor demo")- This program connects to the spike prime, reads the position of two motors in an assembly in Onshape, and then sends commands to the Spike to update their positions.
+DEMO: https://youtu.be/d_Swo2u1O3U
+
+## WIP's
+- ```continual_rotation.py``` - A script that attempts to rotate a part named "axle <1>" 12 times, 30 degrees. This script was an exploration of rotations not around the origin. This is run the same way as ```transforms.py```
+
+- ```serial_interrupt.py``` - This program is an attempt of a IDE X REPL program, where the user is able to upload a saved file while having live access to the serial and REPL. This is run the same was as dice_demo.py however does not use document-preferences as it is not connected with Onshape.
+
+- ```separationOfTransforms.py``` and ```test.py``` are both tests of removing a 90 degree rotation around the x(? i don't remember atm) axis from a combined rotation matrix from an assembly to read the angle something is rotated around the y(? i also don't remember) axis. This was a stepping stone for the reverse_color_demo
+>>>>>>> 61393e891116ed921e5ff43dce6fb31709a2624d
 
 # Getting Started/File System
 ## Before Running 
