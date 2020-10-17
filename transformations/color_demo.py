@@ -36,9 +36,10 @@ message = """
 import hub,utime\r\n
 from spike.control import wait_for_seconds\r\n
 
-def setMotor(large, small):\r\n\b\b
-    hub.port.C.motor.run_to_position(large, 50)\r\n\b
-    hub.port.D.motor.run_to_position(small, 50)\r\n\b
+for i in range (0, 1000):\r\n\b\b
+    angle = hub.port.A.motor.get()[2]\r\n\b
+    print(360 - angle)\r\n\b\b\b
+    wait_for_seconds(1)\r\n\b\b
 
 \r\n\r\n\r\n\r\n
 """ 

@@ -53,6 +53,17 @@ python3 transforms.py -d 12ae4e8452feed57f993bda3 -w bbe3cde5759d1f0c7b2a6f0f -e
 python3 transforms.py -d dd3414d7ce4a85936fabc2dd -w 2e1ab461aae1e88b62babc36 -e f972fe95a1b305aec85caf4b
 https://rogers.onshape.com/api/assemblies/d/dd3414d7ce4a85936fabc2dd/w/2e1ab461aae1e88b62babc36/e/f972fe95a1b305aec85caf4b
 
+
+### Virtual Twin
+python3 transforms.py -d b9ab8b663a1f2b064d769a9f -w c2b780b0662473dd2b356f20 -e 2aebe8b5d73807cef5eaae1a
+
+### Virtual Complex
+python3 transforms.py -d b9ab8b663a1f2b064d769a9f -w c2b780b0662473dd2b356f20 -e a54a8023e65a26c512784698
+
+
+### Two Motor Twin
+https://cad.onshape.com/documents/ -d 70fe5e3fc6fb7ea76acdacdb -w 87adcff3121df77f01ac761a -e c6531610a56df016ac49498f
+
 assembly definition:
 https://rogers.onshape.com/api/assemblies/d/ede5b298fabfaa8e77cfce0fd/w/2886cd6354fd48b86595d86d/e/6d6ae652917f4f958770cd1f?includeMateFeatures=true
 https://rogers.onshape.com/api/assemblies/d/ede5b298fabfaa8e77cfce0f/w/2886cd6354fd48b86595d86d/e/6d6ae652917f4f958770cd1f

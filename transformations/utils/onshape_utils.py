@@ -5,7 +5,7 @@
 # Date: 6/26/20
 # Description: Functions for specific onshape API calls; uses api_utils.py
 # History: 
-#    Last modified by Teo 7/25/20
+#    Last modified by Teo 10/16/20
 # (C) Tufts Center for Engineering Education and Outreach (CEEO)
 ###############################################################################
 import utils.api_utils as api
@@ -99,12 +99,11 @@ def getAssemblyInfo(verbose):
 # postTransform() - Calls 'occurence-transforms'
 # Parameters:
 #   M - a transform matrix
+#   isRelative - boolean for if the transform is relative
 #   parts - an array of part names to apply the transformation to
-#   relative - boolean for if the transform is relative (wip)  
-#   assembly - (as defined above in getAssemblyInfo) 
 #   verbose - boolean for excessive print statements
 # Returns:
-#   Nothing (success code/wip)
+#   Nothing (success code)
 def postTransform(M, isRelative, parts, verbose):
     
     payload = {

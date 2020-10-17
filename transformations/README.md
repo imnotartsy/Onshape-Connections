@@ -7,24 +7,37 @@ DEMO: https://youtu.be/-olHUShWuLk?t=97
 
 *** ^ This is the script you want to start with for any of these following demos, or are just getting started with Onshape Occurrence Transforms.***
 
-- ```dice_demo.py``` - This program connects to the spike prime, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position.
+- ```dice_demo.py``` - (SPIKE to Onshape)
+This program connects to the SPIKE PRIME, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position.
 DEMO: https://youtu.be/-olHUShWuLk?t=129
 
-- ```color_demo.py``` - This program connects to the spike prime, sends a script to print out motor angle, and then calls the Onshape API, transforming the assembly motor based on the position of the physical motor.
+- ```color_demo.py``` - (SPIKE to Onshape)
+This program connects to the SPIKE PRIME, sends a script to print out motor angle, and then calls the Onshape API, transforming the assembly motor based on the position of the physical motor.
 DEMO: https://youtu.be/vS1c-fPyupQ?t=5
 
-- ```reverse_color_demo.py``` (often called the "Two motor demo")- This program connects to the spike prime, reads the position of two motors in an assembly in Onshape, and then sends commands to the Spike to update their positions.
-DEMO: [WIP]
+- ```reverse_color_demo.py``` - (Onshape to SPIKE)
+(often called the "Two motor demo")- This program connects to the SPIKE PRIME, reads the position of two motors in an assembly in Onshape, and then sends commands to the Spike to update their positions.
+DEMO: https://youtu.be/d_Swo2u1O3U
+
+- ```thingworx-onshape.py``` - (Thingworx to Onshape)
+This program connects to thingworx and constantly updates the first object in the onshape assembly in``` document-preferences```
 
 # Getting Started/File System
 ## Before Running 
-- To connect to the Onshape API, an api key and secret .
+
+### Onshape
+- To connect to the Onshape API, an api key and secret.
   - This is done here: https://dev-portal.onshape.com > API Keys
-  - Then put the api key and the secret key, each on their own line in the file ```api-key``` (right now it has place holders "[access key]" and "[secrete key]"
+  - Then put the api key and the secret key, each on their own line in the file ```api-key``` (right now it has place holders "[access key]" and "[secrete key]")
   - Note: You will need separate keys if you are using a document in the cad.onshape workspace or the rogers.onshape workspace.
 - Then a did, wid, and eid are needed from the Onshape Workspace.
   - These can be found in your Onshape document url.
   - Depending on your chosen method of running this program, you will want to keep the did, wid, and eid handy.
+
+### Thingworx (if being used)
+- To connect with a thingworx dashboard, a url and an app key are needed.
+  - Put the url and the app key into the file ```thingworx-keys``` (right
+  now it has placeholders "[url]" and "[appkey]")
 
 ## To Run ```transforms.py```
 There are two ways of running this script.
@@ -51,6 +64,9 @@ Note: The current configuration assumes the user has the port, that can be found
 
 Note: The current configuration assumes the user has the port, that can be found with ```cd /dev``` and the port that looks like "tty.LEGO-SerialPortP" 
 
+## To Run ```thingworx-onshape.py```
+- Using ```python3 thingworx-onshape.py``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
+
 ## Utils (non runnable helper functions that are used across files)
 ```transform_utils.py``` - Implementation of transformation matrix operations + matrix math! (More docuementation here: https://docs.google.com/spreadsheets/d/1MutKDT-GvC54-6fMNVkxyB-l_KxuO7ptp8d1v82nCl4/edit#gid=0)
 
@@ -62,6 +78,11 @@ Note: The current configuration assumes the user has the port, that can be found
   - This file should only be referenced within onshape_utils.
   - The connection to the Onshape API was heavily referenced from
   https://github.com/drybell/CEEO2020/tree/master/Onshape%2B
+
+```thingworx_utils.py``` - Helper functions and set up for connecting to a thingworx dashboard.
+  
+  Note:
+  - The connection to the Onshape API was heavily referenced from a program from Emun Mohammad.
 
 The files should have internal documentation about what all of their functions do.
 

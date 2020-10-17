@@ -1,3 +1,15 @@
+###############################################################################
+# Project name: Separation of transforms
+# File name: transform_utils.py
+# Author: Therese (Teo) Patrosio @imnotartsy
+# Date: 6/26/20
+# Description: Functions to do with transform arg objects and transform matrces
+# Credits/inspirations: Transform matrix math help from Andrew Daetz and Milan
+# History: 
+#    Last modified by Teo 8/4/20
+# (C) Tufts Center for Engineering Education and Outreach (CEEO)
+###############################################################################
+
 import utils.transform_utils as transform
 
 OG = [-3.4041840642415265e-17,    -5.089747088344418e-17,        1.0000000000000013,      -0.01123750000000001,    
