@@ -1,4 +1,4 @@
-# Python X Onshape X Spike
+# Onshape API transformations
 These scripts connect to an assembly in Onshape.
 (See other Onshape+ Team work here: https://github.com/tuftsceeo/Onshape-PLUS-Team)
 
