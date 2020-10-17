@@ -11,7 +11,6 @@
 import requests,json # packages for Thingworx POST & GET
 
 ## Parse Thingworx credentials from file
-
 with open("thingworx-keys", "r") as f: 
     url = f.readline().rstrip()
     appKey = f.readline().rstrip()
@@ -22,6 +21,13 @@ headers = {
         'Content-Type': "application/json"
         }
 
+
+
+#############################################
+#                                           #
+#            GET and POST requests          #
+#                                           #
+#############################################
 
 # thingworxGET() - acts as a GET request to the thingworx dashboard in the 
 #   thingworx-keys file 
