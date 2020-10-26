@@ -1,0 +1,80 @@
+{
+  "configurationParameters" : [
+    {
+    "type" : 1826,
+    "typeName" : "BTMConfigurationParameterQuantity",
+    "message" : {
+      "quantityType" : "ANGLE",
+      "rangeAndDefault" : {
+        "type" : 181,
+        "typeName" : "BTQuantityRange",
+        "message" : {
+          "units" : "degree",
+          "minValue" : -720.0,
+          "maxValue" : 720.0,
+          "defaultValue" : 0.0,
+          "location" : {
+            "type" : 226,
+            "typeName" : "BTLocationInfo",
+            "message" : {
+              "document" : "",
+              "version" : "",
+              "topLevel" : "",
+              "parseNodeId" : "",
+              "character" : 0,
+              "line" : 0,
+              "column" : 0,
+              "endCharacter" : 0,
+              "endLine" : 0,
+              "endColumn" : 0,
+              "languageVersion" : 0,
+              "moduleIds" : {
+                "type" : 1897,
+                "typeName" : "BTDocumentVersionElementIds",
+                "message" : {
+                  "documentId" : "",
+                  "versionId" : "",
+                  "elementId" : ""
+                }
+              },
+              "elementMicroversion" : "",
+              "nodeId" : "Ei3+Q9/GTja52sM0"
+            }
+          }
+        }
+      },
+      "parameterId" : "Rotation",
+      "parameterName" : "Rotation",
+      "hasUserCode" : false,
+      "nodeId" : "Mnptx366BR6uD7Iy2"
+    }
+  }, {
+    "type" : 105,
+    "typeName" : "BTMConfigurationParameterEnum",
+    "message" : {
+      "enumName" : "List_89I3qESFdYeuCv_conf",
+      "options" : [ {
+        "type" : 592,
+        "typeName" : "BTMEnumOption",
+        "message" : {
+          "option" : "Default",
+          "optionName" : "Default",
+          "hasUserCode" : false,
+          "nodeId" : "MeFFweYSFJ6aMDj3Y"
+        }
+      } ],
+      "namespace" : "",
+      "defaultValue" : "Default",
+      "parameterId" : "List_89I3qESFdYeuCv",
+      "parameterName" : "List input 1",
+      "hasUserCode" : false,
+      "nodeId" : "MCfX3JVXyIuoqylfv"
+    }
+  } ],
+  "currentConfiguration" : [ ],
+  "serializationVersion" : "1.1.19",
+  "sourceMicroversion" : "4403e4057754f6a7aa6e8ea4",
+  "rejectMicroversionSkew" : false,
+  "microversionSkew" : false,
+  "libraryVersion" : 1378
+}

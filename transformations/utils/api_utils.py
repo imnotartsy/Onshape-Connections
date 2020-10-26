@@ -26,7 +26,11 @@ urls = {
         'feature-list':
             ['GET', '/api/partstudios/d/did/w/wid/e/eid/features'], #?noSketchGeometry=false
         'add-feature':
-            ['POST', '/api/partstudios/d/did/w/wid/e/eid/features']
+            ['POST', '/api/partstudios/d/did/w/wid/e/eid/features'],
+        'get-config':
+            ['GET', '/api/elements/d/did/w/wid/e/eid/configuration'],
+        'set-config':
+            ['POST', '/api/elements/d/did/w/wid/e/eid/configuration']
 }
 
 #############################################

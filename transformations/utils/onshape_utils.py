@@ -24,27 +24,22 @@ from onshape_client.oas.exceptions import ApiException
 # Parameters:
 #   verbose - boolean for excessive print statements
 # Returns:
-#   - An assembly object (a list):
-#      - The first element is a part dictionary where the keys are part id's
-#    and the values are the names of the parts
-#      - The second element is a posision dictionary where the keys are part
-#   id's and the values are transformation matrices
+#   - see below
+
+### Return Data Structure: a dict of part-objects with their id as the key
+#     assemblyReturn = {
+#         part_id : {
+#             "fullId": [], (eg. ['MFiKjKEzvWtOlyZzO'])
+#             "position": [], # transformation matrix
+#             "partName": "" (eg. 'Part 1 <1>')
+#             "type": "" (eg. 'Part')
+#         }
+#     }
 def getAssemblyInfo(verbose):
     payload = {}
     params = {}
 
     response = api.callAPI('assembly-definition', payload , params, True)
-    # print(response)
-
-    ### Return Data Structure: a dict of part-objects with their id as the key
-    #     assemblyReturn = {
-    #         part_id : {
-    #             "fullId": [],
-    #             "position": [], # transformation matrix
-    #             "partName": ""
-    #             "type": ""
-    #         }
-    #     }
 
     assemblyReturn = {}
 
@@ -189,4 +184,69 @@ def postTransform(M, isRelative, parts, verbose):
 
 #     return response
 
+#############################################
+#                                           #
+#          Configurations API Call          #
+#                                           #
+#############################################
 
+
+# getConfigurations() - Calls 'get-config'
+# Parameters:
+#   verbose - boolean for excessive print statements
+# Returns:
+#   a configurations body (straight from the api)
+def getConfigurations(verbose):
+    payload = {}
+    params = {}
+    
+    try:
+        response = api.callAPI('get-config', params, payload, True)
+    except ApiException as error:
+        print("Invalid transform!")
+        print("Sever message:", error.body)
+        print("Ending. . .")
+        exit();
+
+    if (verbose):
+        print(response)
+
+    return response
+
+
+
+# setConfigurations() - Calls 'set-config'
+# Parameters:
+#   toSet - a dictionary where key:parameterId, values: default/min/max
+#   configInfo - configuration body from getConfigurations()
+#   verbose - boolean for excessive print statements
+# Returns:
+#   Nothing (success code)
+def setConfigurations(toSet, configInfo ,verbose):
+    
+    payload = configInfo
+    params = {}
+
+    for config in configInfo["configurationParameters"]:
+        if config["message"]["parameterId"] in toSet:
+
+            # print("Config:", config["message"]["parameterId"])
+            # print("\tBefore:", config["message"]["rangeAndDefault"]["message"]["defaultValue"])
+            # print("\tAfter:", toSet[config["message"]["parameterId"]])
+
+            currentConfig = config["message"]["rangeAndDefault"]["message"]
+            currentConfig["defaultValue"] = toSet[config["message"]["parameterId"]]
+            currentConfig["minValue"] = toSet[config["message"]["parameterId"]]
+            currentConfig["maxValue"] = toSet[config["message"]["parameterId"]]
+
+    if (verbose): print(json.dumps(payload, indent = 2))
+    
+    try:
+        response = api.callAPI('set-config', params, payload, False)
+    except ApiException as error:
+        print("Invalid transform!")
+        print("Sever message:", error.body)
+        print("Ending. . .")
+        exit();
+
+    return "success"
