@@ -25,7 +25,7 @@ This program updates the configurations in an Onshape assembly based on the curr
 - ```chess.py``` - (Thingworx to Onshape)
 This program connects a thingworx dashboard and updates the position of chess pieces in an Onshape assembly, using occurence transforms. 
 
-    DEMO: https://youtu.be/-olHUShWuLk?t=97 
+    DEMO: https://youtu.be/yxTozOhLwD0
 
 - ```dice_demo.py``` - (SPIKE to Onshape)
 This program connects to the SPIKE PRIME, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position.
