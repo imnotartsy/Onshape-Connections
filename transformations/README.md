@@ -69,7 +69,9 @@ This program connects to thingworx and constantly updates the first object in th
   - Put the url and the app key into the file ```thingworx-keys``` (right
   now it has placeholders "[url]" and "[appkey]")
 
-## To Run ```transforms.py```
+
+## How to Run files 
+### To Run ```transforms.py```
 There are two ways of running this script.
 1. Using the format:
 ``` python3 transforms.py -d your-did-here -w your-wid-here -e your-eid-here```
@@ -77,16 +79,16 @@ There are two ways of running this script.
 
 Note: Currently the only way to use the non default cad.onshape.com workspace is to use document preferences
 
-## To Run ```clock.py``` and ```chess.py```
+### To Run ```clock.py``` and ```chess.py```
 - Using ```python3 <file name> ``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
 
-## To Run ```dice_demo.py```, ```color_demo.py```, and ```reverse_color_demo.py```/"two motor demo"
+### To Run ```dice_demo.py```, ```color_demo.py```, and ```reverse_color_demo.py```/"two motor demo"
 - Using ```python3 <file name>``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
 - Note for ```color_demo.py``` and ```reverse_color_demo.py``` You will also have to update the Serial port on line 19.
 
 Note: The current configuration assumes the user has the port, that can be found with ```cd /dev``` and the port that looks like "tty.LEGO-SerialPortP" 
 
-## To Run ```thingworx-onshape.py```
+### To Run ```thingworx-onshape.py```
 - Using ```python3 thingworx-onshape.py``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
 
 ## Utils (non runnable helper functions that are used across files)
