@@ -1,4 +1,4 @@
-# Onshape API transformations
+# Onshape API transformations and configurations
 These scripts connect to an assembly in Onshape.
 (See other Onshape+ Team work here: https://github.com/tuftsceeo/Onshape-PLUS-Team)
 
@@ -89,7 +89,7 @@ Note: Currently the only way to use the non default cad.onshape.com workspace is
 Note: The current configuration assumes the user has the port, that can be found with ```cd /dev``` and the port that looks like "tty.LEGO-SerialPortP" 
 
 ### To Run ```thingworx-onshape.py```
-- Using ```python3 thingworx-onshape.py``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
+- Using ```python3 thingworx-onshape.py``` with your workspace, did, wid, and eid in the ```document-preferences``` file. (this will also require the thingworx url and app key are filled-in in ```thingworx-keys```)
 
 ## Utils (non runnable helper functions that are used across files)
 ```transform_utils.py``` - Implementation of transformation matrix operations + matrix math! (More docuementation here: https://docs.google.com/spreadsheets/d/1MutKDT-GvC54-6fMNVkxyB-l_KxuO7ptp8d1v82nCl4/edit#gid=0)
