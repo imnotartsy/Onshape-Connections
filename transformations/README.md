@@ -3,11 +3,30 @@ These scripts connect to an assembly in Onshape.
 (See other Onshape+ Team work here: https://github.com/tuftsceeo/Onshape-PLUS-Team)
 
 ## Projects
+
+### Starter files (with terminal UI)
 - ```transforms.py``` - It returns the parts, their ids/paths, and positions in an Onshape Assembly, then allows the user to apply transformations upon being prompted (will be prompted for a transformation (tx, ty, tz, rx, ry, rz, w), if the transform is relative, and then prompted for parts.
 
 DEMO: https://youtu.be/-olHUShWuLk?t=97
 
 *** ^ This is the script you want to start with for any of these following demos, or are just getting started with Onshape Occurrence Transforms.***
+
+- ```configurations.py``` - Returns the configurations and their default, max, and min value from an Onshape Assembly, then allows the user to update the configurations by first selecting the configurations they want to update and then prompting the user for the values.
+
+*** ^ This is the script you want to start with for any of these following demos, or are just getting started with Onshape Occurrence Configurations.***
+
+
+### Various Use Cases and Demos
+
+- ```clock.py``` - (Onshape configurations)
+This program updates the configurations in an Onshape assembly based on the current time.
+
+DEMO: https://youtu.be/DUPdJHBw0MQ
+
+- ```chess.py``` - (Thingworx to Onshape)
+This program connects a thingworx dashboard and updates the position of chess pieces in an Onshape assembly, using occurence transforms. 
+
+DEMO: https://youtu.be/-olHUShWuLk?t=97 
 
 - ```dice_demo.py``` - (SPIKE to Onshape)
 This program connects to the SPIKE PRIME, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position.
@@ -59,20 +78,12 @@ There are two ways of running this script.
 
 Note: Currently the only way to use the non default cad.onshape.com workspace is to use document preferences
 
-## To Run ```dice_demo.py```
-- Using ```python3 dice_demo.py -p your-spike-prime-port``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
+## To Run ```clock.py``` and ```chess.py```
+- Using ```python3 <file name> ``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
 
-Note: The current configuration assumes the user has the port, that can be found with ```cd /dev``` and the port that looks like "tty.LEGO-SerialPortP" 
-
-## To Run ```color_demo.py```
-- Using ```python3 color_demo.py``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
-- You will also have to update the Serial port on line 19.
-
-Note: The current configuration assumes the user has the port, that can be found with ```cd /dev``` and the port that looks like "tty.LEGO-SerialPortP" 
-
-## To Run ```reverse_color_demo.py```/"two motor demo"
-- Using ```python3 reverse_color_demo.py``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
-- You will also have to update the Serial port on line 19.
+## To Run ```dice_demo.py```, ```color_demo.py```, and ```reverse_color_demo.py```/"two motor demo"
+- Using ```python3 <file name>``` with your workspace, did, wid, and eid in the ```document-preferences``` file.
+- Note for ```color_demo.py``` and ```reverse_color_demo.py``` You will also have to update the Serial port on line 19.
 
 Note: The current configuration assumes the user has the port, that can be found with ```cd /dev``` and the port that looks like "tty.LEGO-SerialPortP" 
 
