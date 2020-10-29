@@ -5,15 +5,14 @@ These scripts connect to an assembly in Onshape.
 ## Projects
 
 ### Starter files (with terminal UI)
+*** These are the scripts you want to start with when preparing a demo, or are getting started with Onshape Occurrence Transforms or Configurations.***
+
 - ```transforms.py``` - It returns the parts, their ids/paths, and positions in an Onshape Assembly, then allows the user to apply transformations upon being prompted (will be prompted for a transformation (tx, ty, tz, rx, ry, rz, w), if the transform is relative, and then prompted for parts.
 
-DEMO: https://youtu.be/-olHUShWuLk?t=97
-
-*** ^ This is the script you want to start with for any of these following demos, or are just getting started with Onshape Occurrence Transforms.***
+    DEMO: https://youtu.be/-olHUShWuLk?t=97
 
 - ```configurations.py``` - Returns the configurations and their default, max, and min value from an Onshape Assembly, then allows the user to update the configurations by first selecting the configurations they want to update and then prompting the user for the values.
 
-*** ^ This is the script you want to start with for any of these following demos, or are just getting started with Onshape Occurrence Configurations.***
 
 
 ### Various Use Cases and Demos
@@ -21,27 +20,27 @@ DEMO: https://youtu.be/-olHUShWuLk?t=97
 - ```clock.py``` - (Onshape configurations)
 This program updates the configurations in an Onshape assembly based on the current time.
 
-DEMO: https://youtu.be/DUPdJHBw0MQ
+    DEMO: https://youtu.be/DUPdJHBw0MQ
 
 - ```chess.py``` - (Thingworx to Onshape)
 This program connects a thingworx dashboard and updates the position of chess pieces in an Onshape assembly, using occurence transforms. 
 
-DEMO: https://youtu.be/-olHUShWuLk?t=97 
+    DEMO: https://youtu.be/-olHUShWuLk?t=97 
 
 - ```dice_demo.py``` - (SPIKE to Onshape)
 This program connects to the SPIKE PRIME, sends a script to print out the current gesture state (up, down, back, front, rightside, leftside), and then calls the Onshape API, transforming the dice based on the position.
 
-DEMO: https://youtu.be/-olHUShWuLk?t=129
+    DEMO: https://youtu.be/-olHUShWuLk?t=129
 
 - ```color_demo.py``` - (SPIKE to Onshape)
 This program connects to the SPIKE PRIME, sends a script to print out motor angle, and then calls the Onshape API, transforming the assembly motor based on the position of the physical motor.
 
-DEMO: https://youtu.be/vS1c-fPyupQ?t=5
+    DEMO: https://youtu.be/vS1c-fPyupQ?t=5
 
 - ```reverse_color_demo.py``` - (Onshape to SPIKE)
 (often called the "Two motor demo")- This program connects to the SPIKE PRIME, reads the position of two motors in an assembly in Onshape, and then sends commands to the Spike to update their positions.
 
-DEMO: https://youtu.be/d_Swo2u1O3U
+    DEMO: https://youtu.be/d_Swo2u1O3U
 
 - ```thingworx-onshape.py``` - (Thingworx to Onshape)
 This program connects to thingworx and constantly updates the first object in the onshape assembly in``` document-preferences```
