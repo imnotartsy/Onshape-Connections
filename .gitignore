@@ -16,6 +16,14 @@
 *.lvlps
 .cache/
 
+# Virtual Enviroment stuff
+.venv/
+venv/
+env/
+.env/
+dev/
+transforms/
+
 
 /transformations_milan
 /transformations/__pycache__
