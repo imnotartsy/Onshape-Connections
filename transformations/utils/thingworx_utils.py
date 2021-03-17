@@ -54,4 +54,4 @@ def thingworxGET(fields):
 # Returns:
 #   - nothing
 def thingworxPUT(setValues):
-  return requests.put(url,headers=headers,json=propValue)
+  return requests.put(url,headers=headers,json=setValues)
