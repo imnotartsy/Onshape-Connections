@@ -2,7 +2,7 @@ certifi==2020.12.5
 chardet==4.0.0
 idna==2.10
 nulltype==2.3.1
-numpy==1.20.0
+numpy==1.22.0
 oauthlib==3.1.0
 onshape-client==1.6.3
 packaging==20.9
